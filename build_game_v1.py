@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Builder for Mars Transit Odyssey: Phase 1 (Intro, Crew Selection, LEO Docking & Refueling)
+Builder for Mars Transit Odyssey: Phase 1 (Intro, Crew Dossiers, LEO Docking & Refueling)
 """
 
 import sys
 sys.path.append(r'D:\mars-transit-odyssey')
 from textures_b64 import EARTH_B64, CLOUDS_B64, SPEC_B64, MARS_B64, SUN_B64, MOON_B64
+from crew_b64 import VANCE_B64, ROMANOVA_B64, CHEN_B64, REID_B64
 
 with open(r'D:\mars-transit-odyssey\libs\three.min.js', 'r', encoding='utf-8') as f:
     three_src = f.read()
@@ -185,26 +186,27 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     }
 
     /* ========================================================
-       2. SCREEN CREW (BRIEFING & SELECTION)
+       2. SCREEN CREW (BRIEFING & DOSSIER)
        ======================================================== */
     #screen-crew {
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      padding: 90px 20px 30px 20px;
+      padding: 85px 20px 30px 20px;
       background: radial-gradient(circle at top, #091a38 0%, #020409 70%);
       overflow-y: auto;
     }
     .crew-panel {
-      max-width: 980px;
+      max-width: 1040px;
       width: 100%;
-      padding: 28px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
+      margin-bottom: 30px;
     }
     .briefing-box {
-      background: rgba(0, 210, 255, 0.05);
+      background: rgba(0, 210, 255, 0.06);
       border-left: 4px solid #00f0ff;
       padding: 14px 18px;
       border-radius: 6px;
@@ -233,49 +235,138 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       background: rgba(0, 210, 255, 0.2);
       color: #00f0ff;
     }
+
+    /* Realistic Crew Dossier Grid */
     .crew-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
       gap: 16px;
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .crew-card {
-      background: rgba(15, 25, 48, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 16px;
+      background: rgba(11, 20, 38, 0.88);
+      border: 1px solid rgba(0, 210, 255, 0.22);
+      border-radius: 12px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      transition: all 0.2s;
+      gap: 10px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s ease;
+      position: relative;
     }
     .crew-card:hover {
-      border-color: rgba(0, 210, 255, 0.4);
-      transform: translateY(-2px);
+      border-color: rgba(0, 210, 255, 0.7);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0, 210, 255, 0.16);
     }
-    .crew-avatar {
-      font-size: 32px;
-      margin-bottom: 4px;
-    }
-    .crew-name {
-      font-size: 15px;
+    .crew-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      color: #7b91b0;
       font-weight: 700;
-      color: #ffffff;
     }
-    .crew-role {
-      font-size: 12px;
-      font-weight: 600;
-      color: #00f0ff;
-      text-transform: uppercase;
+    .crew-agency-tag {
+      color: #00d2ff;
+      background: rgba(0, 210, 255, 0.1);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 210, 255, 0.25);
+    }
+    .crew-photo-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #050b16;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    .crew-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .crew-card:hover .crew-photo {
+      transform: scale(1.04);
+    }
+    /* HUD photo brackets */
+    .hud-bracket {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-color: #00f0ff;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .bracket-tl { top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid; }
+    .bracket-tr { top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid; }
+    .bracket-bl { bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid; }
+    .bracket-br { bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    .crew-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
       letter-spacing: 0.5px;
     }
-    .crew-perk {
+    .crew-role {
       font-size: 11px;
-      color: #94a3b8;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 6px 8px;
+      font-weight: 700;
+      color: #00f0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .crew-spec-box {
+      background: rgba(0, 0, 0, 0.4);
+      border-left: 3px solid #ffaa00;
       border-radius: 4px;
-      margin-top: 4px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .crew-spec-tag {
+      font-size: 10px;
+      font-weight: 800;
+      color: #ffaa00;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .crew-spec-desc {
+      font-size: 11px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .crew-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #00e699;
+      margin-top: auto;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #00e699;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00e699;
+      display: inline-block;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { opacity: 0.6; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 0.6; transform: scale(0.9); }
     }
 
     /* ========================================================
@@ -549,7 +640,6 @@ HTML_CONTENT = r'''<!DOCTYPE html>
        ========================================================= -->
   <div class="screen active" id="screen-intro">
     <div class="intro-video-container">
-      <!-- Fallback or User video -->
       <video id="intro-video" loop muted playsinline poster="">
         <source src="videos/launch.mp4" type="video/mp4">
       </video>
@@ -567,7 +657,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
   </div>
 
   <!-- =========================================================
-       2. SCREEN: CREW SELECTION & BRIEFING
+       2. SCREEN: CREW SELECTION & BRIEFING (REALISTIC DOSSIER)
        ========================================================= -->
   <div class="screen" id="screen-crew">
     <div class="crew-panel glass-card">
@@ -584,42 +674,117 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <button class="tab-btn" onclick="switchCrewTab('custom', this)" id="i18n-tab-custom">КОНСТРУКТОР ЭКИПАЖА</button>
       </div>
 
-      <!-- Canon Crew Grid -->
+      <!-- Canon Crew Grid with Real High-Tech Dossier Photos -->
       <div class="crew-grid" id="canon-crew-grid">
+        <!-- 1. Commander Alex Vance -->
         <div class="crew-card">
-          <div class="crew-avatar">👨‍🚀</div>
-          <div class="crew-name">Алекс Вэнс</div>
-          <div class="crew-role" id="i18n-role-cmdr">Командир миссии</div>
-          <div class="crew-perk">⭐ Перк: Хладнокровие (+15% при пожарах)</div>
+          <div class="crew-card-header">
+            <span class="crew-agency-tag">NASA // SPACEX</span>
+            <span>ID: AR1-01 // CDR</span>
+          </div>
+          <div class="crew-photo-wrap">
+            <img src="__VANCE_B64__" class="crew-photo" alt="Alex Vance">
+            <div class="hud-bracket bracket-tl"></div>
+            <div class="hud-bracket bracket-tr"></div>
+            <div class="hud-bracket bracket-bl"></div>
+            <div class="hud-bracket bracket-br"></div>
+          </div>
+          <div class="crew-name" id="i18n-crew-cmdr-name">Алекс Вэнс</div>
+          <div class="crew-role" id="i18n-crew-cmdr-role">Командир корабля</div>
+          <div class="crew-spec-box">
+            <span class="crew-spec-tag" id="i18n-spec-lbl-1">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
+            <div class="crew-spec-desc" id="i18n-crew-cmdr-spec">Борьба за живучесть: +15% к ликвидации системных сбоев</div>
+          </div>
+          <div class="crew-status">
+            <span class="status-dot"></span>
+            <span id="i18n-status-1">К ПОЛЕТУ ДОПУЩЕН</span>
+          </div>
         </div>
+
+        <!-- 2. Pilot Elena Romanova -->
         <div class="crew-card">
-          <div class="crew-avatar">👩‍🚀</div>
-          <div class="crew-name">Елена Романова</div>
-          <div class="crew-role" id="i18n-role-pilot">Главный пилот</div>
-          <div class="crew-perk">⭐ Перк: Ас стыковки (+20% точность «Курс»)</div>
+          <div class="crew-card-header">
+            <span class="crew-agency-tag">РОСКОСМОС</span>
+            <span>ID: AR1-02 // PLT</span>
+          </div>
+          <div class="crew-photo-wrap">
+            <img src="__ROMANOVA_B64__" class="crew-photo" alt="Elena Romanova">
+            <div class="hud-bracket bracket-tl"></div>
+            <div class="hud-bracket bracket-tr"></div>
+            <div class="hud-bracket bracket-bl"></div>
+            <div class="hud-bracket bracket-br"></div>
+          </div>
+          <div class="crew-name" id="i18n-crew-plt-name">Елена Романова</div>
+          <div class="crew-role" id="i18n-crew-plt-role">Главный пилот</div>
+          <div class="crew-spec-box">
+            <span class="crew-spec-tag" id="i18n-spec-lbl-2">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
+            <div class="crew-spec-desc" id="i18n-crew-plt-spec">Ручное сближение «Курс»: +20% точность соосности</div>
+          </div>
+          <div class="crew-status">
+            <span class="status-dot"></span>
+            <span id="i18n-status-2">К ПОЛЕТУ ДОПУЩЕН</span>
+          </div>
         </div>
+
+        <!-- 3. Engineer Chen Wei -->
         <div class="crew-card">
-          <div class="crew-avatar">👨‍🔧</div>
-          <div class="crew-name">Чэнь Вэй</div>
-          <div class="crew-role" id="i18n-role-eng">Бортинженер</div>
-          <div class="crew-perk">⭐ Перк: Эксперт Raptor (-25% запчастей)</div>
+          <div class="crew-card-header">
+            <span class="crew-agency-tag">CNSA // MARS OPS</span>
+            <span>ID: AR1-03 // ENG</span>
+          </div>
+          <div class="crew-photo-wrap">
+            <img src="__CHEN_B64__" class="crew-photo" alt="Chen Wei">
+            <div class="hud-bracket bracket-tl"></div>
+            <div class="hud-bracket bracket-tr"></div>
+            <div class="hud-bracket bracket-bl"></div>
+            <div class="hud-bracket bracket-br"></div>
+          </div>
+          <div class="crew-name" id="i18n-crew-eng-name">Чэнь Вэй</div>
+          <div class="crew-role" id="i18n-crew-eng-role">Бортинженер</div>
+          <div class="crew-spec-box">
+            <span class="crew-spec-tag" id="i18n-spec-lbl-3">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
+            <div class="crew-spec-desc" id="i18n-crew-eng-spec">Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП</div>
+          </div>
+          <div class="crew-status">
+            <span class="status-dot"></span>
+            <span id="i18n-status-3">К ПОЛЕТУ ДОПУЩЕН</span>
+          </div>
         </div>
+
+        <!-- 4. Dr. Marcus Reid -->
         <div class="crew-card">
-          <div class="crew-avatar">👨‍⚕️</div>
-          <div class="crew-name">д-р Маркус Рид</div>
-          <div class="crew-role" id="i18n-role-doc">Судовой врач</div>
-          <div class="crew-perk">⭐ Перк: Био-регенерация (+20% к здоровью)</div>
+          <div class="crew-card-header">
+            <span class="crew-agency-tag">ESA // BIO-MED</span>
+            <span>ID: AR1-04 // MED</span>
+          </div>
+          <div class="crew-photo-wrap">
+            <img src="__REID_B64__" class="crew-photo" alt="Dr. Marcus Reid">
+            <div class="hud-bracket bracket-tl"></div>
+            <div class="hud-bracket bracket-tr"></div>
+            <div class="hud-bracket bracket-bl"></div>
+            <div class="hud-bracket bracket-br"></div>
+          </div>
+          <div class="crew-name" id="i18n-crew-med-name">д-р Маркус Рид</div>
+          <div class="crew-role" id="i18n-crew-med-role">Судовой врач</div>
+          <div class="crew-spec-box">
+            <span class="crew-spec-tag" id="i18n-spec-lbl-4">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
+            <div class="crew-spec-desc" id="i18n-crew-med-spec">Микрогравитация и травматология: +20% био-буфер</div>
+          </div>
+          <div class="crew-status">
+            <span class="status-dot"></span>
+            <span id="i18n-status-4">К ПОЛЕТУ ДОПУЩЕН</span>
+          </div>
         </div>
       </div>
 
       <!-- Custom Crew Builder (Toggleable) -->
-      <div id="custom-crew-box" style="display: none; font-size: 13px; color: #94a3b8; padding: 14px; background: rgba(0,0,0,0.3); border-radius: 8px;">
-        <div>Распределите очки специализации экипажа (доступно: 12 очков):</div>
-        <div style="display: flex; gap: 20px; margin-top: 10px;">
-          <div>🚀 Пилотирование: <strong>+4</strong></div>
-          <div>🔧 Инженерия: <strong>+4</strong></div>
-          <div>🧬 Медицина: <strong>+2</strong></div>
-          <div>🧠 Психика: <strong>+2</strong></div>
+      <div id="custom-crew-box" style="display: none; font-size: 13px; color: #cbd5e1; padding: 18px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(0,210,255,0.2);">
+        <div id="i18n-custom-desc" style="font-weight: 700; color: #00f0ff;">Распределите очки квалификации экипажа (доступно: 12 очков):</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 14px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🚀 <span id="i18n-skill-pilot">Пилотирование</span>: <strong style="color: #00f0ff;">+4</strong></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🔧 <span id="i18n-skill-eng">Инженерия СЖО/ДУ</span>: <strong style="color: #00f0ff;">+4</strong></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🧬 <span id="i18n-skill-med">Биомедицина</span>: <strong style="color: #00f0ff;">+2</strong></div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🧠 <span id="i18n-skill-psy">Психоустойчивость</span>: <strong style="color: #00f0ff;">+2</strong></div>
         </div>
       </div>
 
@@ -682,18 +847,18 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         
         <div class="rcs-grid">
           <div></div>
-          <button class="rcs-btn" onmousedown="applyThrust('up')" title="Смещение вверх">▲</button>
+          <button class="rcs-btn" onmousedown="applyThrust('up')" title="Смещение вверх (Q)">▲</button>
           <div></div>
-          <button class="rcs-btn" onmousedown="applyThrust('left')" title="Смещение влево">◀</button>
+          <button class="rcs-btn" onmousedown="applyThrust('left')" title="Смещение влево (A)">◀</button>
           <button class="rcs-btn" onmousedown="applyThrust('forward')" title="Тяга вперед (W)" style="color: #00e699;">W</button>
-          <button class="rcs-btn" onmousedown="applyThrust('right')" title="Смещение вправо">▶</button>
+          <button class="rcs-btn" onmousedown="applyThrust('right')" title="Смещение вправо (D)">▶</button>
           <div></div>
-          <button class="rcs-btn" onmousedown="applyThrust('down')" title="Смещение вниз">▼</button>
+          <button class="rcs-btn" onmousedown="applyThrust('down')" title="Смещение вниз (E)">▼</button>
           <button class="rcs-btn" onmousedown="applyThrust('back')" title="Торможение назад (S)" style="color: #ff9900;">S</button>
         </div>
 
         <div style="flex: 1; font-size: 12px; color: #94a3b8; line-height: 1.5;">
-          💡 <strong>Инструкция:</strong> Подведите носовой штырь к стыковочному кольцу танкера со скоростью менее <strong>0.20 м/с</strong> и отклонением осей менее <strong>2.0°</strong> для жесткого захвата!
+          💡 <strong>Инструкция:</strong> Совместите носовой штырь со стыковочным конусом танкера на скорости менее <strong>0.25 м/с</strong> и отклонении менее <strong>2.0°</strong> для жесткого захвата замков!
         </div>
       </div>
     </div>
@@ -753,6 +918,25 @@ __ORBIT_SRC__
         crew_briefing: "🎙️ <strong>ЦУП (Хьюстон / Королёв):</strong> «\"Арес\", вы на расчетной орбите 320 км. Первый танкер заправки Tanker-01 уже выполнил фазирование и находится в зоне видимости. Подтвердите допуск экипажа к миссии!»",
         tab_canon: "ШТАТНЫЙ ЭКИПАЖ (КАНОН)",
         tab_custom: "КОНСТРУКТОР ЭКИПАЖА",
+        spec_lbl: "🎖️ СПЕЦИАЛИЗАЦИЯ:",
+        crew_cmdr_name: "Алекс Вэнс",
+        crew_cmdr_role: "Командир корабля",
+        crew_cmdr_spec: "Борьба за живучесть: +15% к ликвидации системных сбоев",
+        crew_plt_name: "Елена Романова",
+        crew_plt_role: "Главный пилот",
+        crew_plt_spec: "Ручное сближение «Курс»: +20% точность соосности",
+        crew_eng_name: "Чэнь Вэй",
+        crew_eng_role: "Бортинженер",
+        crew_eng_spec: "Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП",
+        crew_med_name: "д-р Маркус Рид",
+        crew_med_role: "Судовой врач",
+        crew_med_spec: "Микрогравитация и травматология: +20% био-буфер",
+        crew_status: "К ПОЛЕТУ ДОПУЩЕН",
+        custom_desc: "Распределите очки квалификации экипажа (доступно: 12 очков):",
+        skill_pilot: "Пилотирование",
+        skill_eng: "Инженерия СЖО/ДУ",
+        skill_med: "Биомедицина",
+        skill_psy: "Психоустойчивость",
         btn_confirm_crew: "УТВЕРДИТЬ ЭКИПАЖ И ВЫЙТИ НА СТЫКОВКУ ➔",
         modal_title: "🎯 СТЫКОВКА УСПЕШНА!",
         toast_dock_success: "Жёсткий захват стыковочного узла зафиксирован!",
@@ -769,6 +953,25 @@ __ORBIT_SRC__
         crew_briefing: "🎙️ <strong>MISSION CONTROL:</strong> 'Ares, you are in nominal 320 km parking orbit. Orbital Tanker-01 has completed rendezvous phasing and is in visual range. Confirm crew flight clearance!'",
         tab_canon: "NOMINAL CREW (CANON)",
         tab_custom: "CUSTOM CREW BUILDER",
+        spec_lbl: "🎖️ SPECIALIZATION:",
+        crew_cmdr_name: "Alex Vance",
+        crew_cmdr_role: "Mission Commander",
+        crew_cmdr_spec: "Damage Control: +15% crisis resolution rate",
+        crew_plt_name: "Elena Romanova",
+        crew_plt_role: "Chief Pilot",
+        crew_plt_spec: "Kurs Manual Rendezvous: +20% alignment accuracy",
+        crew_eng_name: "Chen Wei",
+        crew_eng_role: "Flight Engineer",
+        crew_eng_spec: "Raptor 3 Propulsion: -25% component wear & spare parts",
+        crew_med_name: "Dr. Marcus Reid",
+        crew_med_role: "Chief Medical Officer",
+        crew_med_spec: "Zero-G Trauma Care: +20% crew bio-resilience",
+        crew_status: "FLIGHT CERTIFIED",
+        custom_desc: "Allocate crew qualification points (12 points available):",
+        skill_pilot: "Piloting",
+        skill_eng: "Propulsion & ECLSS",
+        skill_med: "Biomedicine",
+        skill_psy: "Psychological Resilience",
         btn_confirm_crew: "CONFIRM CREW & PROCEED TO DOCKING ➔",
         modal_title: "🎯 HARD CAPTURE CONFIRMED!",
         toast_dock_success: "Docking latch engaged! Cryogenic umbilicals connected.",
@@ -794,6 +997,39 @@ __ORBIT_SRC__
       document.getElementById('i18n-crew-briefing').innerHTML = d.crew_briefing;
       document.getElementById('i18n-tab-canon').innerText = d.tab_canon;
       document.getElementById('i18n-tab-custom').innerText = d.tab_custom;
+
+      // Specialization labels
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById('i18n-spec-lbl-' + i);
+        if (el) el.innerText = d.spec_lbl;
+        const st = document.getElementById('i18n-status-' + i);
+        if (st) st.innerText = d.crew_status;
+      }
+
+      // Crew names, roles & specializations
+      document.getElementById('i18n-crew-cmdr-name').innerText = d.crew_cmdr_name;
+      document.getElementById('i18n-crew-cmdr-role').innerText = d.crew_cmdr_role;
+      document.getElementById('i18n-crew-cmdr-spec').innerText = d.crew_cmdr_spec;
+
+      document.getElementById('i18n-crew-plt-name').innerText = d.crew_plt_name;
+      document.getElementById('i18n-crew-plt-role').innerText = d.crew_plt_role;
+      document.getElementById('i18n-crew-plt-spec').innerText = d.crew_plt_spec;
+
+      document.getElementById('i18n-crew-eng-name').innerText = d.crew_eng_name;
+      document.getElementById('i18n-crew-eng-role').innerText = d.crew_eng_role;
+      document.getElementById('i18n-crew-eng-spec').innerText = d.crew_eng_spec;
+
+      document.getElementById('i18n-crew-med-name').innerText = d.crew_med_name;
+      document.getElementById('i18n-crew-med-role').innerText = d.crew_med_role;
+      document.getElementById('i18n-crew-med-spec').innerText = d.crew_med_spec;
+
+      // Custom crew skills
+      document.getElementById('i18n-custom-desc').innerText = d.custom_desc;
+      document.getElementById('i18n-skill-pilot').innerText = d.skill_pilot;
+      document.getElementById('i18n-skill-eng').innerText = d.skill_eng;
+      document.getElementById('i18n-skill-med').innerText = d.skill_med;
+      document.getElementById('i18n-skill-psy').innerText = d.skill_psy;
+
       document.getElementById('i18n-btn-confirm-crew').innerText = d.btn_confirm_crew;
       document.getElementById('i18n-modal-title').innerText = d.modal_title;
     }
@@ -935,7 +1171,7 @@ __ORBIT_SRC__
       const ambientLight = new THREE.AmbientLight(0x1a263d, 0.6);
       scene.add(ambientLight);
 
-      // Земля внизу на горизонте (Радиус 400 на дистанции 420)
+      // Земля внизу на горизонте
       const texLoader = new THREE.TextureLoader();
       const earthTex = texLoader.load(TEXTURES_DATA.earth);
       const cloudsTex = texLoader.load(TEXTURES_DATA.clouds);
@@ -994,7 +1230,6 @@ __ORBIT_SRC__
     function createStarshipModel(hullColor = 0xf5f5f7, isPlayer = true) {
       const group = new THREE.Group();
       const steelMat = new THREE.MeshStandardMaterial({ color: hullColor, metalness: 0.85, roughness: 0.18 });
-      const heatShieldMat = new THREE.MeshStandardMaterial({ color: 0x111115, metalness: 0.3, roughness: 0.8 });
 
       // Корпус
       const hull = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.4, 12, 32), steelMat);
@@ -1013,7 +1248,7 @@ __ORBIT_SRC__
       probe.rotation.x = Math.PI / 2;
       group.add(probe);
 
-      // Кормовые и носовые закрылки (Flaps)
+      // Закрылки
       const flapMat = new THREE.MeshStandardMaterial({ color: 0x18181c, metalness: 0.7, roughness: 0.3 });
       const leftAft = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.1, 3.2), flapMat);
       leftAft.position.set(-2.4, 0, -4.5);
@@ -1041,7 +1276,7 @@ __ORBIT_SRC__
       dockRing.position.z = -7.1;
       group.add(dockRing);
 
-      // Большие солнечные батареи танкера
+      // Солнечные батареи танкера
       const panelMat = new THREE.MeshStandardMaterial({ color: 0x0044aa, metalness: 0.7, roughness: 0.3 });
       const p1 = new THREE.Mesh(new THREE.BoxGeometry(9.0, 0.1, 2.5), panelMat);
       p1.position.set(-6.5, 0, 0);
@@ -1103,7 +1338,7 @@ __ORBIT_SRC__
         starshipGroup.position.set(shipPos.x, shipPos.y, shipPos.z);
         starshipGroup.rotation.set(shipRot.pitch, shipRot.yaw, shipRot.roll);
 
-        // Расчет дистанции между стыковочным штырем и кольцом танкера
+        // Расчет дистанции
         const dist = Math.abs(shipPos.z - (-7.0));
         const approachVel = shipVel.z;
         const alignOffset = Math.sqrt(shipPos.x * shipPos.x + shipPos.y * shipPos.y);
@@ -1214,6 +1449,12 @@ final_html = final_html.replace('__EARTH_B64__', EARTH_B64)
 final_html = final_html.replace('__CLOUDS_B64__', CLOUDS_B64)
 final_html = final_html.replace('__SPEC_B64__', SPEC_B64)
 
+# Replace crew base64 photos
+final_html = final_html.replace('__VANCE_B64__', VANCE_B64)
+final_html = final_html.replace('__ROMANOVA_B64__', ROMANOVA_B64)
+final_html = final_html.replace('__CHEN_B64__', CHEN_B64)
+final_html = final_html.replace('__REID_B64__', REID_B64)
+
 with open(r'D:\mars-transit-odyssey\index.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
 
@@ -1221,4 +1462,4 @@ with open(r'D:\mars-transit-odyssey\index.html', 'w', encoding='utf-8') as f:
 with open(r'C:\Users\User\Desktop\Полет на Марс 3D.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
 
-print("Game v1 (Intro, Crew, Docking, Refueling) built successfully on Drive D: and Desktop!")
+print("Game updated successfully with realistic crew portraits and specialization badges!")
