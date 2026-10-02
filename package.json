@@ -1,0 +1,20 @@
+{
+  "name": "mars-transit-odyssey",
+  "version": "1.0.0",
+  "description": "Hard-sci-fi Mars mission simulator with orbital refueling, life support management, and atmospheric entry.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [
+    "mars",
+    "space",
+    "simulation",
+    "starship",
+    "threejs",
+    "game"
+  ],
+  "author": "Antigravity & User",
+  "license": "MIT"
+}

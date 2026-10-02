@@ -1,0 +1,31 @@
+{
+  "app_title": "Арес-1: Марсианский транзит",
+  "status_orbit": "НА ОРБИТЕ ЗЕМЛИ (LEO)",
+  "status_docking": "СТЫКОВКА С ТАНКЕРОМ",
+  "status_refueling": "ПЕРЕКАЧКА МЕТАНА (ULLAGE)",
+  "status_tmi": "ТРАНСМАРСИАНСКИЙ ИМПУЛЬС",
+  "status_cruise": "МЕЖПЛАНЕТНЫЙ ПЕРЕЛЕТ",
+  "status_mars_entry": "ВХОД В АТМОСФЕРУ (BELLY FLOP)",
+  "status_landing": "ПОСАДОЧНЫЙ МАНЕВР (FLIP & BURN)",
+  "status_landed": "УСПЕШНАЯ ПОСАДКА НА МАРС",
+  
+  "hud_day": "ДЕНЬ МИССИИ",
+  "hud_speed": "ГЕЛИОЦЕНТРИЧЕСКАЯ СКОРОСТЬ",
+  "hud_dist_earth": "ДИСТАНЦИЯ ДО ЗЕМЛИ",
+  "hud_dist_mars": "ДИСТАНЦИЯ ДО МАРСА",
+  "hud_delay": "ЗАДЕРЖКА РАДИОСИГНАЛА",
+  "hud_phase": "ФАЗА ПОЛЕТА",
+  "hud_fuel": "МЕТАН И КИСЛОРОД (LOX/CH4)",
+  "hud_power": "ЗАРЯД АККУМУЛЯТОРОВ",
+  "hud_oxygen": "СИСТЕМА КИСЛОРОДА (O2)",
+
+  "btn_dock": "НАЧАТЬ СБЛИЖЕНИЕ («КУРС»)",
+  "btn_ullage": "ОСАЖДЕНИЕ ТОПЛИВА (ULLAGE BURN)",
+  "btn_transfer_fuel": "ПЕРЕКАЧАТЬ ТОПЛИВО",
+  "btn_launch_tmi": "ЗАПУСК РАПТОРОВ (TMI)",
+  "btn_language": "Язык: RU",
+  
+  "toast_docking_success": "Жесткий захват стыковочного узла! Магистрали подключены.",
+  "toast_refuel_complete": "Баки заправлены: 1200 тонн метана и жидкого кислорода. Готовы к TMI!",
+  "toast_tmi_complete": "Трансмарсианский импульс завершен. Курс на Красную планету!"
+}

@@ -1,0 +1,31 @@
+{
+  "app_title": "Ares-1: Martian Transit",
+  "status_orbit": "LOW EARTH ORBIT (LEO)",
+  "status_docking": "TANKER DOCKING",
+  "status_refueling": "METHANE REFUELING (ULLAGE)",
+  "status_tmi": "TRANS-MARS INJECTION",
+  "status_cruise": "INTERPLANETARY CRUISE",
+  "status_mars_entry": "ATMOSPHERIC ENTRY (BELLY FLOP)",
+  "status_landing": "LANDING MANEUVER (FLIP & BURN)",
+  "status_landed": "SUCCESSFUL MARS LANDING",
+  
+  "hud_day": "MISSION DAY",
+  "hud_speed": "HELIOCENTRIC VELOCITY",
+  "hud_dist_earth": "DISTANCE TO EARTH",
+  "hud_dist_mars": "DISTANCE TO MARS",
+  "hud_delay": "RADIO SIGNAL DELAY",
+  "hud_phase": "FLIGHT PHASE",
+  "hud_fuel": "PROPELLANT (LOX/CH4)",
+  "hud_power": "BATTERY CHARGE",
+  "hud_oxygen": "OXYGEN SYSTEM (O2)",
+
+  "btn_dock": "INITIATE DOCKING ('KURS')",
+  "btn_ullage": "SETTLE FUEL (ULLAGE BURN)",
+  "btn_transfer_fuel": "TRANSFER PROPELLANT",
+  "btn_launch_tmi": "IGNITE RAPTORS (TMI)",
+  "btn_language": "Language: EN",
+  
+  "toast_docking_success": "Hard capture confirmed! Cryogenic propellant umbilicals locked.",
+  "toast_refuel_complete": "Tanks full: 1,200 tons of liquid methane & LOX. Ready for TMI burn!",
+  "toast_tmi_complete": "Trans-Mars Injection burn complete. On trajectory to the Red Planet!"
+}

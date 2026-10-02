@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Персональный трекер: Марсианский транзит (8 недель)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #050813;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      padding: 30px 20px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    /* Header Card */
+    .header-card {
+      background: linear-gradient(135deg, rgba(16, 27, 54, 0.85) 0%, rgba(8, 14, 28, 0.95) 100%);
+      border: 1px solid rgba(0, 210, 255, 0.25);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 210, 255, 0.05);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(0, 230, 153, 0.15);
+      border: 1px solid rgba(0, 230, 153, 0.4);
+      color: #00e699;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #00f0ff 0%, #3a7bd5 50%, #ff5e62 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #8fa0b8;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    /* Progress stats */
+    .progress-section {
+      margin-top: 15px;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00d2ff, #00e699);
+      border-radius: 6px;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba(0, 230, 153, 0.5);
+    }
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: rgba(16, 27, 54, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      background: rgba(0, 210, 255, 0.15);
+      color: #fff;
+      border-color: rgba(0, 210, 255, 0.3);
+    }
+    .filter-btn.active {
+      background: rgba(0, 210, 255, 0.25);
+      color: #00f0ff;
+      border-color: #00f0ff;
+    }
+    /* Sprint Cards */
+    .sprint-card {
+      background: rgba(13, 22, 44, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .sprint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+    .sprint-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sprint-dates {
+      font-size: 12px;
+      color: #7b91b0;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    /* Task item */
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .task-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .task-checkbox {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: #00e699;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .task-content {
+      flex: 1;
+    }
+    .task-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 3px;
+      transition: color 0.2s;
+    }
+    .task-desc {
+      font-size: 12px;
+      color: #7b91b0;
+    }
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .task-item.completed .task-desc {
+      color: #475569;
+    }
+    .sprint-goal {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(0, 210, 255, 0.05);
+      border-left: 3px solid #00f0ff;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    /* Notes Section */
+    .notes-card {
+      background: rgba(13, 22, 44, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      background: rgba(5, 10, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #e2e8f0;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #00f0ff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header-card">
+    <div class="badge">🚀 ПРОИЗВОДСТВЕННЫЙ ТРЕКЕР</div>
+    <h1>ПРОЕКТ «МАРСИАНСКИЙ ТРАНЗИТ» (8 НЕДЕЛЬ)</h1>
+    <div class="subtitle">Спринты: 01.10.2026 — 26.11.2026 | Стек: ПК (Godot 4) ➔ Mac (Xcode) ➔ iPhone</div>
+
+    <div class="progress-section">
+      <div class="progress-labels">
+        <span>Прогресс разработки</span>
+        <span id="progress-percent">0% (0 / 32)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterSprint('all', this)">Все спринты</button>
+    <button class="filter-btn" onclick="filterSprint('sprint1', this)">Спринт 1: Физика и дозаправка</button>
+    <button class="filter-btn" onclick="filterSprint('sprint2', this)">Спринт 2: Ресурсы и ЦУП</button>
+    <button class="filter-btn" onclick="filterSprint('sprint3', this)">Спринт 3: 3D и Посадка</button>
+    <button class="filter-btn" onclick="filterSprint('sprint4', this)">Спринт 4: Mac, iOS и Релиз</button>
+  </div>
+
+  <!-- SPRINT 1 -->
+  <div class="sprint-card" data-sprint="sprint1">
+    <div class="sprint-header">
+      <div class="sprint-title">🎯 СПРИНТ 1: Орбитальная физика, дозаправка и i18n</div>
+      <div class="sprint-dates">01.10 — 14.10.2026</div>
+    </div>
+    
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_1">
+      <div class="task-content">
+        <div class="task-title">T-1.1: Установка Godot 4.3 и инициализация Git-репозитория</div>
+        <div class="task-desc">Настройка проекта на ПК, структура папок, привязка GitHub для синхронизации с Mac.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_2">
+      <div class="task-content">
+        <div class="task-title">T-1.2: Базовая таблица локализации (Русский + Английский)</div>
+        <div class="task-desc">Файл localization.csv (i18n), кнопка переключения языка RU/EN в углу экрана.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_3">
+      <div class="task-content">
+        <div class="task-title">T-1.3: Орбитальная модель движения вокруг Земли</div>
+        <div class="task-desc">Орбита 300 км, скорость 7.7 км/с, расчет эллипса и вектора движения.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_4">
+      <div class="task-content">
+        <div class="task-title">T-1.4: Управление маневровыми двигателями ориентации (RCS)</div>
+        <div class="task-desc">Тангаж, крен, рыскание при помощи сопел газа.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_5">
+      <div class="task-content">
+        <div class="task-title">T-1.5: Стыковочный интерфейс системы «Курс»</div>
+        <div class="task-desc">Визир с мишенью, индикатор дистанции и относительной скорости к танкеру.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_6">
+      <div class="task-content">
+        <div class="task-title">T-1.6: Механика жесткой сцепки с танкером</div>
+        <div class="task-desc">Магнитный захват при сближении со скоростью менее 0.2 м/с.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_7">
+      <div class="task-content">
+        <div class="task-title">T-1.7: Осаждение топлива микро-тягой (Ullage burn)</div>
+        <div class="task-desc">Импульс маневровых сопел для прижатия жидкого метана ко дну бака перед перекачкой.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_8">
+      <div class="task-content">
+        <div class="task-title">T-1.8: Контроль закипания метана (Boil-off)</div>
+        <div class="task-desc">Сброс пара, дренажный клапан и заправка баков до 100% перед стартом к Марсу.</div>
+      </div>
+    </div>
+
+    <div class="sprint-goal">
+      <strong>Критерий готовности:</strong> Старт на орбите с пустыми баками, ручная стыковка с танкером, заправка 1200 тонн метана и разгонный импульс TMI.
+    </div>
+  </div>
+
+  <!-- SPRINT 2 -->
+  <div class="sprint-card" data-sprint="sprint2">
+    <div class="sprint-header">
+      <div class="sprint-title">🛰️ СПРИНТ 2: Ресурсы, экипаж и диалоговый триллер ЦУП</div>
+      <div class="sprint-dates">15.10 — 28.10.2026</div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_1">
+      <div class="task-content">
+        <div class="task-title">T-2.1: Система 4 ресурсов корабля (Кислород, Метан, Энергия, Тепло)</div>
+        <div class="task-desc">Баланс потребления: обогрев кают, работа скрубберов CO2, выработка солнечных панелей.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_2">
+      <div class="task-content">
+        <div class="task-title">T-2.2: Канонический экипаж (4 героя)</div>
+        <div class="task-desc">Командир, Пилот, Бортинженер, Судовой врач. Портреты, характеристики и мораль.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_3">
+      <div class="task-content">
+        <div class="task-title">T-2.3: Кастомный конструктор экипажа</div>
+        <div class="task-desc">Распределение очков навыков и перков («Железные нервы», «Клаустрофобия») для реиграбельности.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_4">
+      <div class="task-content">
+        <div class="task-title">T-2.4: Реалистичная модель задержки радиосигнала</div>
+        <div class="task-desc">Радиозадержка растет пропорционально дистанции от 1 секунды до 15 минут у Марса.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_5">
+      <div class="task-content">
+        <div class="task-title">T-2.5: Кризис: Вспышка на Солнце Х-класса</div>
+        <div class="task-desc">Разворот корабля кормовым щитом к Солнцу, эвакуация экипажа в водяной радиационный бункер.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_6">
+      <div class="task-content">
+        <div class="task-title">T-2.6: Кризис: Выход в открытый космос (EVA)</div>
+        <div class="task-desc">Ремонт предохранителя обогрева баков в скафандре снаружи обшивки.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_7">
+      <div class="task-content">
+        <div class="task-title">T-2.7: Кризис: «Хирургия вслепую» (Аппендицит врача)</div>
+        <div class="task-desc">Судовой врач слег с перитонитом. Пошаговая операция руками инженера по инструкциям ЦУП с задержкой 14 мин.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_8">
+      <div class="task-content">
+        <div class="task-title">T-2.8: Звуковой движок радиопереговоров</div>
+        <div class="task-desc">Аудиоэффекты радиопомех, щелчки рации, сигналы аварийных сирен.</div>
+      </div>
+    </div>
+
+    <div class="sprint-goal">
+      <strong>Критерий готовности:</strong> Пройден межпланетный перелет на 100 дней, решены кризисы экипажа и сохранена жизнь врача.
+    </div>
+  </div>
+
+  <!-- SPRINT 3 -->
+  <div class="sprint-card" data-sprint="sprint3">
+    <div class="sprint-header">
+      <div class="sprint-title">🔴 СПРИНТ 3: 3D-графика, VFX и посадка на Марс</div>
+      <div class="sprint-dates">29.10 — 11.11.2026</div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_1">
+      <div class="task-content">
+        <div class="task-title">T-3.1: 3D-модель Starship в Blender</div>
+        <div class="task-desc">Стальной блеск, черные термоплитки, подвижные аэродинамические закрылки.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_2">
+      <div class="task-content">
+        <div class="task-title">T-3.2: Шейдер накала теплозащиты до 1600°C</div>
+        <div class="task-desc">Огненный шлейф плазмы, раскаленные плитки и эффект радиомолчания (Blackout).</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_3">
+      <div class="task-content">
+        <div class="task-title">T-3.3: 3D-рельеф кратера Гейл (NASA MOLA)</div>
+        <div class="task-desc">Текстуры марсианских каньонов, скал и песчаных дюн для зоны посадки.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_4">
+      <div class="task-content">
+        <div class="task-title">T-3.4: Марсианское освещение и пылевая буря</div>
+        <div class="task-desc">Специфический марсианский голубой закат и частицы пылевой бури.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_5">
+      <div class="task-content">
+        <div class="task-title">T-3.5: Физика торможения «брюхом» (Belly Flop)</div>
+        <div class="task-desc">Удержание угла атаки 60° подруливанием закрылками при падении сквозь атмосферу.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_6">
+      <div class="task-content">
+        <div class="task-title">T-3.6: Кульминационный разворот «Flip-and-Burn»</div>
+        <div class="task-desc">Сальто за 2 секунды на высоте 800 метров с включением посадочных Рапторов.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_7">
+      <div class="task-content">
+        <div class="task-title">T-3.7: Ручной пилотаж посадочных двигателей</div>
+        <div class="task-desc">Гашение вертикальной и горизонтальной скорости, борьба с боковым ветром.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t3_8">
+      <div class="task-content">
+        <div class="task-title">T-3.8: Детекция успешного приземления</div>
+        <div class="task-desc">Выпуск опор, проверка угла наклона (< 7°), триумфальный финальный экран касания.</div>
+      </div>
+    </div>
+
+    <div class="sprint-goal">
+      <strong>Критерий готовности:</strong> Зрелищный адреналиновый цикл: вход в атмосферу, сальто над грунтом и мягкая посадка на опоры.
+    </div>
+  </div>
+
+  <!-- SPRINT 4 -->
+  <div class="sprint-card" data-sprint="sprint4">
+    <div class="sprint-header">
+      <div class="sprint-title">🍏 СПРИНТ 4: Mac, iOS билд, полировка и релиз</div>
+      <div class="sprint-dates">12.11 — 26.11.2026</div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_1">
+      <div class="task-content">
+        <div class="task-title">T-4.1: Перенос проекта на Mac через Git</div>
+        <div class="task-desc">Клонирование репозитория на Mac, синхронизация всех ассетов и скриптов.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_2">
+      <div class="task-content">
+        <div class="task-title">T-4.2: Экспорт проекта Godot в формат Xcode (.xcodeproj)</div>
+        <div class="task-desc">Генерация нативного проекта iOS для компилятора Apple.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_3">
+      <div class="task-content">
+        <div class="task-title">T-4.3: Сборка на физический iPhone / iPad</div>
+        <div class="task-desc">Подписание бесплатным сертификатом Apple ID и прямая установка на личный телефон.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_4">
+      <div class="task-content">
+        <div class="task-title">T-4.4: Сенсорное управление + Гироскоп iPhone</div>
+        <div class="task-desc">Подруливание закрылками наклоном телефона в руках + экранные кнопки тяги.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_5">
+      <div class="task-content">
+        <div class="task-title">T-4.5: Тестирование баланса сложности и расхода ресурсов</div>
+        <div class="task-desc">Проверка прохождения игры без багов и тупиковых ситуаций.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_6">
+      <div class="task-content">
+        <div class="task-title">T-4.6: Финализация двуязычия (RU / EN) и звуков</div>
+        <div class="task-desc">Вычитка всех текстов радиосообщений, звуковые акценты победы и поражения.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_7">
+      <div class="task-content">
+        <div class="task-title">T-4.7: Оформление: иконка приложения и скриншоты</div>
+        <div class="task-desc">Крутая иконка со Starship над Марсом для экрана iPhone и постеров.</div>
+      </div>
+    </div>
+
+    <div class="task-item" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t4_8">
+      <div class="task-content">
+        <div class="task-title">T-4.8: Финальный релиз (App Store / Web / RuStore)</div>
+        <div class="task-desc">Готовая игра установлена на ваш iPhone и опубликована в вебе/сторах!</div>
+      </div>
+    </div>
+
+    <div class="sprint-goal">
+      <strong>Критерий готовности:</strong> Игра готова к публике, установлена на вашем iPhone и работает стабильно на 60 FPS.
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="notes-card">
+    <div style="font-weight: 700; font-size: 15px; color: #f1f5f9; margin-bottom: 4px;">📝 Личные заметки разработчика</div>
+    <div style="font-size: 12px; color: #7b91b0;">Заметки автоматически сохраняются в вашем браузере.</div>
+    <textarea id="dev-notes" placeholder="Записывайте сюда мысли, идеи по сюжету, ссылки на ассеты или напоминания..." oninput="saveNotes()"></textarea>
+  </div>
+</div>
+
+<script>
+  // LocalStorage keys
+  const STORAGE_KEY = 'mars_mission_tracker_state';
+  const NOTES_KEY = 'mars_mission_tracker_notes';
+
+  let state = {};
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) state = JSON.parse(saved);
+    } catch(e) {}
+
+    // Apply state
+    document.querySelectorAll('.task-checkbox').forEach(cb => {
+      if (state[cb.id]) {
+        cb.checked = true;
+        cb.closest('.task-item').classList.add('completed');
+      }
+    });
+
+    // Load notes
+    const savedNotes = localStorage.getItem(NOTES_KEY);
+    if (savedNotes) {
+      document.getElementById('dev-notes').value = savedNotes;
+    }
+
+    updateProgress();
+  }
+
+  function toggleTask(item) {
+    const cb = item.querySelector('.task-checkbox');
+    cb.checked = !cb.checked;
+    state[cb.id] = cb.checked;
+    
+    if (cb.checked) {
+      item.classList.add('completed');
+    } else {
+      item.classList.remove('completed');
+    }
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch(e) {}
+
+    updateProgress();
+  }
+
+  // Prevent double click on checkbox itself
+  document.querySelectorAll('.task-checkbox').forEach(cb => {
+    cb.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state[cb.id] = cb.checked;
+      const item = cb.closest('.task-item');
+      if (cb.checked) item.classList.add('completed');
+      else item.classList.remove('completed');
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch(e) {}
+      updateProgress();
+    });
+  });
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.task-checkbox');
+    const checked = document.querySelectorAll('.task-checkbox:checked');
+    const total = all.length;
+    const count = checked.length;
+    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+
+    document.getElementById('progress-percent').innerText = `${pct}% (${count} / ${total})`;
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  function filterSprint(sprint, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    document.querySelectorAll('.sprint-card').forEach(card => {
+      if (sprint === 'all' || card.dataset.sprint === sprint) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  function saveNotes() {
+    const val = document.getElementById('dev-notes').value;
+    try {
+      localStorage.setItem(NOTES_KEY, val);
+    } catch(e) {}
+  }
+
+  window.addEventListener('DOMContentLoaded', loadState);
+</script>
+
+</body>
+</html>
