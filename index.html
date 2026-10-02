@@ -71,6 +71,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
     }
     .top-controls {
       display: flex;
@@ -87,11 +88,39 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .icon-btn:hover {
       background: rgba(0, 210, 255, 0.2);
       color: #00f0ff;
       border-color: #00f0ff;
+    }
+    .icon-btn.highlight {
+      background: rgba(0, 210, 255, 0.15);
+      color: #00f0ff;
+      border-color: rgba(0, 210, 255, 0.4);
+    }
+
+    /* Common Button Glow */
+    .btn-glow {
+      background: linear-gradient(135deg, #00d2ff 0%, #0066cc 100%);
+      color: white;
+      border: none;
+      padding: 14px 34px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.4);
+      transition: all 0.25s;
+    }
+    .btn-glow:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
     }
 
     /* ========================================================
@@ -150,24 +179,6 @@
       color: #94a3b8;
       margin-bottom: 30px;
     }
-    .btn-glow {
-      background: linear-gradient(135deg, #00d2ff 0%, #0066cc 100%);
-      color: white;
-      border: none;
-      padding: 14px 36px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(0, 210, 255, 0.4);
-      transition: all 0.25s;
-    }
-    .btn-glow:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
-    }
 
     /* ========================================================
        2. SCREEN CREW (BRIEFING & DOSSIER)
@@ -198,17 +209,18 @@
       color: #cbd5e1;
       line-height: 1.6;
     }
-    .crew-tabs {
+    .crew-tabs, .science-tabs {
       display: flex;
       gap: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 10px;
+      flex-wrap: wrap;
     }
     .tab-btn {
       background: transparent;
       border: none;
       color: #94a3b8;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       padding: 8px 18px;
       cursor: pointer;
@@ -283,7 +295,6 @@
     .crew-card:hover .crew-photo {
       transform: scale(1.04);
     }
-    /* HUD photo brackets */
     .hud-bracket {
       position: absolute;
       width: 10px;
@@ -354,6 +365,116 @@
       0% { opacity: 0.6; transform: scale(0.9); }
       50% { opacity: 1; transform: scale(1.15); }
       100% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    /* ========================================================
+       2.5. SCREEN SCIENCE (РЕАЛЬНАЯ АЭРОКОСМИЧЕСКАЯ ФИЗИКА)
+       ======================================================== */
+    #screen-science {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 85px 20px 30px 20px;
+      background: radial-gradient(circle at top, #0c1b3d 0%, #020409 75%);
+      overflow-y: auto;
+    }
+    .science-panel {
+      max-width: 1040px;
+      width: 100%;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .science-header {
+      border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+      padding-bottom: 14px;
+    }
+    .science-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: #00e699;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .science-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .science-content-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .science-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .sci-fact-card {
+      background: rgba(14, 24, 46, 0.7);
+      border: 1px solid rgba(0, 210, 255, 0.2);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .sci-fact-card:hover {
+      border-color: rgba(0, 210, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 210, 255, 0.12);
+    }
+    .sci-fact-val {
+      font-size: 20px;
+      font-weight: 900;
+      color: #00f0ff;
+      font-family: 'Consolas', monospace;
+    }
+    .sci-fact-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .sci-fact-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .sci-formula-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 230, 153, 0.3);
+      border-radius: 8px;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .sci-formula {
+      font-family: 'Consolas', monospace;
+      font-size: 20px;
+      font-weight: 800;
+      color: #00e699;
+      letter-spacing: 2px;
+    }
+    .sci-formula-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    .sci-body-text {
+      background: rgba(0, 210, 255, 0.05);
+      border-left: 4px solid #00f0ff;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
     }
 
     /* ========================================================
@@ -610,10 +731,11 @@
 
   <!-- Top Bar -->
   <div class="top-bar glass-card">
-    <div class="game-logo">
+    <div class="game-logo" onclick="showIntroScreen()">
       <span>🚀 АРЕС-1 // 2038</span>
     </div>
     <div class="top-controls">
+      <button class="icon-btn highlight" id="sci-nav-btn" onclick="showScienceScreen()">💡 НАУКА МИССИИ</button>
       <button class="icon-btn" id="lang-btn" onclick="toggleLanguage()">RU | EN</button>
       <button class="icon-btn" id="audio-btn" onclick="toggleAudio()">🔊</button>
     </div>
@@ -776,8 +898,154 @@
       </div>
 
       <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-        <button class="btn-glow" onclick="startDockingGameplay()" id="i18n-btn-confirm-crew">
-          УТВЕРДИТЬ ЭКИПАЖ И ВЫЙТИ НА СТЫКОВКУ ➔
+        <button class="btn-glow" onclick="showScienceScreen()" id="i18n-btn-confirm-crew">
+          УТВЕРДИТЬ ЭКИПАЖ И ПЕРЕЙТИ К БРИФИНГУ ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       2.5. SCREEN: SCIENCE BRIEFING (РЕАЛЬНАЯ АЭРОКОСМИЧЕСКАЯ ФИЗИКА)
+       ========================================================= -->
+  <div class="screen" id="screen-science">
+    <div class="science-panel glass-card">
+      <div class="science-header">
+        <div class="science-tag" id="i18n-sci-tag">БОРТОВОЙ СПРАВОЧНИК // РЕАЛЬНАЯ АЭРОКОСМИЧЕСКАЯ ФИЗИКА</div>
+        <div class="science-title" id="i18n-sci-title">КАК STARSHIP ВЫХОДИТ НА ОРБИТУ И ЗАЧЕМ НУЖНА ДОЗАПРАВКА?</div>
+      </div>
+
+      <div class="science-tabs">
+        <button class="tab-btn active" onclick="switchScienceTab('tab-launch', this)" id="i18n-sci-tab1">🚀 ВЫВЕДЕНИЕ (7.8 КМ/С)</button>
+        <button class="tab-btn" onclick="switchScienceTab('tab-tsiolkovsky', this)" id="i18n-sci-tab2">⛽ УРАВНЕНИЕ ЦИОЛКОВСКОГО</button>
+        <button class="tab-btn" onclick="switchScienceTab('tab-ullage', this)" id="i18n-sci-tab3">❄️ КРИОГЕН И ULLAGE</button>
+        <button class="tab-btn" onclick="switchScienceTab('tab-reality', this)" id="i18n-sci-tab4">🛠️ РЕАЛЬНОСТЬ XXI ВЕКА</button>
+      </div>
+
+      <!-- Tab 1: Launch & Hot-Staging -->
+      <div class="science-content-box" id="tab-launch">
+        <div class="science-card-grid">
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">5 000 т</div>
+            <div class="sci-fact-label" id="i18n-sci-f1-lbl">Стартовая масса системы</div>
+            <div class="sci-fact-desc" id="i18n-sci-f1-desc">Super Heavy + Starship. Самая гигантская ракета в истории (в 2 раза мощнее лунной Saturn V).</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">33 Raptor 3</div>
+            <div class="sci-fact-label" id="i18n-sci-f2-lbl">Тяга первой ступени</div>
+            <div class="sci-fact-desc" id="i18n-sci-f2-desc">7 500 тонн совокупной тяги на метане (CH4) и жидком кислороде (LOX). Давление в камере 350 атм.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Hot-Staging</div>
+            <div class="sci-fact-label" id="i18n-sci-f3-lbl">Горячее разделение</div>
+            <div class="sci-fact-desc" id="i18n-sci-f3-desc">Двигатели Starship зажигаются прямо перед отделением ступени через перфорированное титановое кольцо.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">28 000 км/ч</div>
+            <div class="sci-fact-label" id="i18n-sci-f4-lbl">Первая космическая (v1)</div>
+            <div class="sci-fact-desc" id="i18n-sci-f4-desc">Скорость 7.8 км/с, позволяющая «падать мимо Земли» по круговой орбите высотой 320 км.</div>
+          </div>
+        </div>
+        <div class="sci-body-text" id="i18n-sci-body-launch">
+          💡 <strong>Как мы здесь оказались:</strong> Чтобы подняться на высоту 320 км и преодолеть гравитацию и сопротивление атмосферы, ракета сожгла колоссальные 3 400 тонн топлива бустера и 1 100 тонн самого корабля. Корабль на орбите — но его баки практически пусты!
+        </div>
+      </div>
+
+      <!-- Tab 2: Tsiolkovsky Equation -->
+      <div class="science-content-box" id="tab-tsiolkovsky" style="display: none;">
+        <div class="sci-formula-box">
+          <div class="sci-formula">Δv = I_sp · g_0 · ln(m_0 / m_k)</div>
+          <div class="sci-formula-desc" id="i18n-sci-formula-desc">Формула Циолковского (1903 г.): «Тирания ракетного уравнения»</div>
+        </div>
+        <div class="science-card-grid">
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">92%</div>
+            <div class="sci-fact-label" id="i18n-sci-t1-lbl">Сгорело при старте</div>
+            <div class="sci-fact-desc" id="i18n-sci-t1-desc">Ракета несёт топливо, чтобы разгонять само топливо. Масса растет экспоненциально!</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">8% (96 т)</div>
+            <div class="sci-fact-label" id="i18n-sci-t2-lbl">Остаток на орбите</div>
+            <div class="sci-fact-desc" id="i18n-sci-t2-desc">Этого хватит лишь на свод с орбиты, но ни о каком Марсе речи быть не может.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">3 600 м/с</div>
+            <div class="sci-fact-label" id="i18n-sci-t3-lbl">Импульс TMI к Марсу</div>
+            <div class="sci-fact-desc" id="i18n-sci-t3-desc">Необходимая характеристическая скорость для перехода на трансферную орбиту Гомана к Марсу.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">1 200 тонн</div>
+            <div class="sci-fact-label" id="i18n-sci-t4-lbl">Целевая дозаправка</div>
+            <div class="sci-fact-desc" id="i18n-sci-t4-desc">Полные баки на орбите дают кораблю запас скорости 6.9 км/с — гарантия перелета и посадки!</div>
+          </div>
+        </div>
+        <div class="sci-body-text" id="i18n-sci-body-tsiolk">
+          💡 <strong>Вся правда без иллюзий:</strong> Ни одна ракета в мире не способна стартовать с Земли сразу к Марсу с жилым модулем на 100 тонн. Единственный физически возможный путь в Солнечной системе — вывести корабль на орбиту, а затем серией танкеров наполнить его баки. Без орбитальной дозаправки полет на Марс невозможен!
+        </div>
+      </div>
+
+      <!-- Tab 3: Cryogenics & Ullage -->
+      <div class="science-content-box" id="tab-ullage" style="display: none;">
+        <div class="science-card-grid">
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">-161°C / -183°C</div>
+            <div class="sci-fact-label" id="i18n-sci-u1-lbl">Криогенная пара</div>
+            <div class="sci-fact-desc" id="i18n-sci-u1-desc">Жидкий метан (CH4) и жидкий кислород (LOX). Требуют вакуумной теплоизоляции баков.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">0g Невесомость</div>
+            <div class="sci-fact-label" id="i18n-sci-u2-lbl">Поведение жидкости</div>
+            <div class="sci-fact-desc" id="i18n-sci-u2-desc">В невесомости жидкость не прижата ко дну, а плавает пузырями и липнет к стенкам бака.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Кавитация ⚠️</div>
+            <div class="sci-fact-label" id="i18n-sci-u3-lbl">Смертельная опасность</div>
+            <div class="sci-fact-desc" id="i18n-sci-u3-desc">Если турбонасос захватит пузырь газа при 30 000 об/мин — крыльчатку разорвет, а двигатель взорвется.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Ullage Burn 🔥</div>
+            <div class="sci-fact-label" id="i18n-sci-u4-lbl">Импульс осаждения</div>
+            <div class="sci-fact-desc" id="i18n-sci-u4-desc">Включение сопел RCS дает ускорение 0.02g: криоген оседает на дно баков к насосам перекачки.</div>
+          </div>
+        </div>
+        <div class="sci-body-text" id="i18n-sci-body-ullage">
+          💡 <strong>Инженерная процедура:</strong> Прежде чем перекачивать 1200 тонн метана, экипаж обязан выдать импульс осаждения (Ullage Burn). Как только топливо прижмется ко дну, открываются криогенные магистрали высокого давления.
+        </div>
+      </div>
+
+      <!-- Tab 4: Real XXI Century Engineering -->
+      <div class="science-content-box" id="tab-reality" style="display: none;">
+        <div class="science-card-grid">
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Starbase</div>
+            <div class="sci-fact-label" id="i18n-sci-r1-lbl">Бока-Чика, Техас</div>
+            <div class="sci-fact-desc" id="i18n-sci-r1-desc">Реальная фабрика Starfactory и стартовые комплексы, строящие флот многоразовых кораблей.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Mechazilla</div>
+            <div class="sci-fact-label" id="i18n-sci-r2-lbl">Поимка в воздухе</div>
+            <div class="sci-fact-desc" id="i18n-sci-r2-desc">В октябре 2024 (полет IFT-5) 71-метровый бустер Super Heavy впервые в истории пойман башней Mechazilla!</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">NASA Artemis</div>
+            <div class="sci-fact-label" id="i18n-sci-r3-lbl">Лунная программа США</div>
+            <div class="sci-fact-desc" id="i18n-sci-r3-desc">NASA официально выбрало Starship HLS для высадки людей на Луну с обязательной орбитальной дозаправкой.</div>
+          </div>
+          <div class="sci-fact-card">
+            <div class="sci-fact-val">Tipping Point</div>
+            <div class="sci-fact-label" id="i18n-sci-r4-lbl">Орбитальные тесты</div>
+            <div class="sci-fact-desc" id="i18n-sci-r4-desc">SpaceX уже успешно провела первый этап испытаний перекачки криогена в космосе по контракту NASA.</div>
+          </div>
+        </div>
+        <div class="sci-body-text" id="i18n-sci-body-reality">
+          💡 <strong>Это не фантастика:</strong> Всё, чем вы управляете в этой миссии — от башни обслуживания до криогенной перекачки — строится и тестируется прямо сейчас инженерами SpaceX и NASA. Наша игра — это строгая проекция реальной космонавтики 2038 года!
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+        <button class="icon-btn" onclick="showCrewScreen()" id="i18n-btn-back-crew">◀ НАЗАД К ЭКИПАЖУ</button>
+        <button class="btn-glow" onclick="startDockingGameplay()" id="i18n-btn-start-docking">
+          ПРИНЯТЬ УПРАВЛЕНИЕ И ВЫЙТИ НА СТЫКОВКУ ➔
         </button>
       </div>
     </div>
@@ -1948,6 +2216,7 @@
 
     const DICT = {
       ru: {
+        sci_nav_btn: "💡 НАУКА МИССИИ",
         intro_year: "2038 ГОД // КОСМОДРОМ STARBASE",
         intro_title: "АРЕС-1: МАРСИАНСКИЙ ТРАНЗИТ",
         intro_text: "Годы подготовки завершены. Многоразовый межпланетный лайнер нового поколения выведен на опорную околоземную орбиту. Баки корабля пусты после старта. До открытия марсианского окна — считанные дни. Начните операцию!",
@@ -1957,6 +2226,10 @@
         tab_canon: "ШТАТНЫЙ ЭКИПАЖ (КАНОН)",
         tab_custom: "КОНСТРУКТОР ЭКИПАЖА",
         spec_lbl: "🎖️ СПЕЦИАЛИЗАЦИЯ:",
+        agency_1: "NASA // SPACEX",
+        agency_2: "РОСКОСМОС",
+        agency_3: "CNSA // МАРС",
+        agency_4: "ESA // МЕДИЦИНА",
         crew_cmdr_name: "Алекс Вэнс",
         crew_cmdr_role: "Командир корабля",
         crew_cmdr_spec: "Борьба за живучесть: +15% к ликвидации системных сбоев",
@@ -1967,10 +2240,6 @@
         crew_eng_role: "Бортинженер",
         crew_eng_spec: "Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП",
         crew_med_name: "д-р Маркус Рид",
-        agency_1: "NASA // SPACEX",
-        agency_2: "РОСКОСМОС",
-        agency_3: "CNSA // МАРС",
-        agency_4: "ESA // МЕДИЦИНА",
         crew_med_role: "Судовой врач",
         crew_med_spec: "Микрогравитация и травматология: +20% био-буфер",
         crew_status: "К ПОЛЕТУ ДОПУЩЕН",
@@ -1979,7 +2248,55 @@
         skill_eng: "Инженерия СЖО/ДУ",
         skill_med: "Биомедицина",
         skill_psy: "Психоустойчивость",
-        btn_confirm_crew: "УТВЕРДИТЬ ЭКИПАЖ И ВЫЙТИ НА СТЫКОВКУ ➔",
+        btn_confirm_crew: "УТВЕРДИТЬ ЭКИПАЖ И ПЕРЕЙТИ К БРИФИНГУ ➔",
+        
+        // Science Briefing (RU)
+        sci_tag: "БОРТОВОЙ СПРАВОЧНИК // РЕАЛЬНАЯ АЭРОКОСМИЧЕСКАЯ ФИЗИКА",
+        sci_title: "КАК STARSHIP ВЫХОДИТ НА ОРБИТУ И ЗАЧЕМ НУЖНА ДОЗАПРАВКА?",
+        sci_tab1: "🚀 ВЫВЕДЕНИЕ (7.8 КМ/С)",
+        sci_tab2: "⛽ УРАВНЕНИЕ ЦИОЛКОВСКОГО",
+        sci_tab3: "❄️ КРИОГЕН И ULLAGE",
+        sci_tab4: "🛠️ РЕАЛЬНОСТЬ XXI ВЕКА",
+        sci_f1_lbl: "Стартовая масса системы",
+        sci_f1_desc: "Super Heavy + Starship. Самая гигантская ракета в истории (в 2 раза мощнее лунной Saturn V).",
+        sci_f2_lbl: "Тяга первой ступени",
+        sci_f2_desc: "7 500 тонн совокупной тяги на метане (CH4) и жидком кислороде (LOX). 33 двигателя Raptor 3.",
+        sci_f3_lbl: "Горячее разделение",
+        sci_f3_desc: "Двигатели Starship зажигаются прямо перед отделением ступени через титановое кольцо (Hot-staging).",
+        sci_f4_lbl: "Первая космическая (v1)",
+        sci_f4_desc: "Скорость 28 000 км/ч (7.8 км/с), позволяющая «падать мимо Земли» по круговой орбите 320 км.",
+        sci_body_launch: "💡 <strong>Как мы здесь оказались:</strong> Чтобы подняться на высоту 320 км и преодолеть гравитацию и сопротивление атмосферы, ракета сожгла колоссальные 3 400 тонн топлива бустера и 1 100 тонн самого корабля. Корабль на орбите — но его баки практически пусты!",
+        sci_formula_desc: "Формула Циолковского (1903 г.): «Тирания ракетного уравнения»",
+        sci_t1_lbl: "Сгорело при старте",
+        sci_t1_desc: "Ракета несёт топливо, чтобы разгонять само топливо. Масса растет экспоненциально!",
+        sci_t2_lbl: "Остаток на орбите",
+        sci_t2_desc: "Этого хватит лишь на свод с орбиты, но ни о каком Марсе речи быть не может.",
+        sci_t3_lbl: "Импульс TMI к Марсу",
+        sci_t3_desc: "Необходимая характеристическая скорость для перехода на трансферную орбиту Гомана к Марсу.",
+        sci_t4_lbl: "Целевая дозаправка",
+        sci_t4_desc: "Полные баки на орбите дают кораблю запас скорости 6.9 км/с — гарантия перелета и посадки!",
+        sci_body_tsiolk: "💡 <strong>Вся правда без иллюзий:</strong> Ни одна ракета в мире не способна стартовать с Земли сразу к Марсу с жилым модулем на 100 тонн. Единственный физически возможный путь в Солнечной системе — вывести корабль на орбиту, а затем серией танкеров наполнить его баки. Без орбитальной дозаправки полет на Марс невозможен!",
+        sci_u1_lbl: "Криогенная пара",
+        sci_u1_desc: "Жидкий метан (-161°C) и жидкий кислород (-183°C). Требуют вакуумной теплоизоляции баков.",
+        sci_u2_lbl: "Поведение жидкости",
+        sci_u2_desc: "В невесомости жидкость не прижата ко дну, а плавает пузырями и липнет к стенкам бака.",
+        sci_u3_lbl: "Кавитационный взрыв ⚠️",
+        sci_u3_desc: "Если турбонасос захватит пузырь газа при 30 000 об/мин — крыльчатку разорвет, а двигатель взорвется.",
+        sci_u4_lbl: "Импульс осаждения 🔥",
+        sci_u4_desc: "Включение сопел RCS вперед дает ускорение 0.02g: криоген оседает на дно баков к насосам перекачки.",
+        sci_body_ullage: "💡 <strong>Инженерная процедура:</strong> Прежде чем перекачивать 1200 тонн метана, экипаж обязан выдать импульс осаждения (Ullage Burn). Как только топливо прижмется ко дну, открываются криогенные магистрали высокого давления.",
+        sci_r1_lbl: "Бока-Чика, Техас",
+        sci_r1_desc: "Реальная фабрика Starfactory и стартовые комплексы, строящие флот многоразовых кораблей.",
+        sci_r2_lbl: "Поимка в воздухе",
+        sci_r2_desc: "В октябре 2024 года 71-метровый бустер Super Heavy впервые в истории пойман башней Mechazilla!",
+        sci_r3_lbl: "Лунная программа США",
+        sci_r3_desc: "NASA официально выбрало Starship HLS для высадки людей на Луну с обязательной орбитальной дозаправкой.",
+        sci_r4_lbl: "Орбитальные тесты",
+        sci_r4_desc: "SpaceX уже успешно провела первый этап испытаний перекачки криогена в космосе по контракту NASA.",
+        sci_body_reality: "💡 <strong>Это не фантастика:</strong> Всё, чем вы управляете в этой миссии — от башни обслуживания до криогенной перекачки — строится и тестируется прямо сейчас инженерами SpaceX и NASA. Наша игра — это строгая проекция реальной космонавтики 2038 года!",
+        btn_back_crew: "◀ НАЗАД К ЭКИПАЖУ",
+        btn_start_docking: "ПРИНЯТЬ УПРАВЛЕНИЕ И ВЫЙТИ НА СТЫКОВКУ ➔",
+
         modal_title: "🎯 СТЫКОВКА УСПЕШНА!",
         toast_dock_success: "Жёсткий захват стыковочного узла зафиксирован!",
         toast_ullage: "Импульс осаждения топлива (Ullage Burn) завершен! Топливо на дне баков.",
@@ -1987,6 +2304,7 @@
         toast_tmi: "Рапторы включены! Выход на траекторию к Марсу!"
       },
       en: {
+        sci_nav_btn: "💡 MISSION SCIENCE",
         intro_year: "YEAR 2038 // STARBASE SPACEPORT",
         intro_title: "ARES-1: MARTIAN TRANSIT",
         intro_text: "Years of training are complete. The next-generation reusable interplanetary Starship is in low Earth parking orbit. Propellant tanks are dry after launch. The Mars transfer window opens in days. Initiate operation!",
@@ -2018,7 +2336,55 @@
         skill_eng: "Propulsion & ECLSS",
         skill_med: "Biomedicine",
         skill_psy: "Psychological Resilience",
-        btn_confirm_crew: "CONFIRM CREW & PROCEED TO DOCKING ➔",
+        btn_confirm_crew: "CONFIRM CREW & PROCEED TO BRIEFING ➔",
+
+        // Science Briefing (EN)
+        sci_tag: "MISSION MANUAL // REAL AEROSPACE PHYSICS",
+        sci_title: "HOW STARSHIP REACHES ORBIT & WHY REFUELING IS MANDATORY",
+        sci_tab1: "🚀 ORBITAL INSERTION (7.8 KM/S)",
+        sci_tab2: "⛽ TSIOLKOVSKY EQUATION",
+        sci_tab3: "❄️ CRYOGENICS & ULLAGE",
+        sci_tab4: "🛠️ XXI CENTURY REALITY",
+        sci_f1_lbl: "System Launch Mass",
+        sci_f1_desc: "Super Heavy + Starship. The most colossal and powerful rocket in human history (2x Apollo Saturn V).",
+        sci_f2_lbl: "Booster Thrust",
+        sci_f2_desc: "7,500 metric tons of thrust burning methane (CH4) and liquid oxygen (LOX). 33 Raptor 3 engines.",
+        sci_f3_lbl: "Hot-Staging",
+        sci_f3_desc: "Starship vacuum engines ignite right before stage separation through a perforated titanium interstage ring.",
+        sci_f4_lbl: "Orbital Velocity (v1)",
+        sci_f4_desc: "Speed of 28,000 km/h (7.8 km/s) enabling the ship to permanently 'fall around the Earth' at 320 km.",
+        sci_body_launch: "💡 <strong>How we arrived here:</strong> To climb to 320 km and beat atmospheric drag, the stack consumed 3,400 tons of booster propellant and 1,100 tons of ship propellant. Starship is in orbit — but its tanks are virtually dry!",
+        sci_formula_desc: "Tsiolkovsky Formula (1903): 'The Tyranny of the Rocket Equation'",
+        sci_t1_lbl: "Burned at Launch",
+        sci_t1_desc: "A rocket must carry propellant merely to accelerate its own propellant. Mass increases exponentially!",
+        sci_t2_lbl: "Orbital Remainder",
+        sci_t2_desc: "Enough only for deorbit maneuvers, completely inadequate for a Mars transfer trajectory.",
+        sci_t3_lbl: "TMI Delta-v to Mars",
+        sci_t3_desc: "Required characteristic velocity increment to enter the Hohmann transfer trajectory toward Mars.",
+        sci_t4_lbl: "Target Refueling",
+        sci_t4_desc: "Full propellant tanks in orbit yield 6.9 km/s delta-v — ensuring Earth departure, cruise, and Mars landing!",
+        sci_body_tsiolk: "💡 <strong>Hard reality without illusions:</strong> No rocket can launch from Earth directly to Mars with a 100-ton habitat. The only physically viable path in our solar system is launching empty and refueling in LEO via orbital tankers. Without orbital refueling, Mars is impossible!",
+        sci_u1_lbl: "Cryogenic Propellant",
+        sci_u1_desc: "Liquid methane (-161°C) and liquid oxygen (-183°C). Requiring vacuum-jacketed cryogenic tanks.",
+        sci_u2_lbl: "Zero-G Fluid Dynamics",
+        sci_u2_desc: "In microgravity, liquids do not stay at the bottom; surface tension causes them to float in bubbles and coat tank walls.",
+        sci_u3_lbl: "Turbopump Cavitation ⚠️",
+        sci_u3_desc: "If a turbopump spinning at 30,000 RPM ingests a gas bubble, catastrophic cavitation will rupture the engine.",
+        sci_u4_lbl: "Ullage Burn Maneuver 🔥",
+        sci_u4_desc: "Firing forward RCS thrusters produces 0.02g acceleration, forcing 1,200t of cryogenic propellant to the sumps.",
+        sci_body_ullage: "💡 <strong>Engineering Procedure:</strong> Prior to cryogenic transfer, the crew executes an Ullage Burn. Only once propellant settles at the tank sumps are the high-pressure cryogenic transfer umbilicals opened.",
+        sci_r1_lbl: "Boca Chica, Texas",
+        sci_r1_desc: "The real Starfactory facility and launch complexes engineered to build an interplanetary armada.",
+        sci_r2_lbl: "Mid-Air Catch",
+        sci_r2_desc: "In October 2024 (IFT-5), the 71-meter Super Heavy booster returned from space and was caught mid-air by Mechazilla Chopsticks!",
+        sci_r3_lbl: "NASA Artemis Program",
+        sci_r3_desc: "NASA officially selected Starship HLS to land astronauts on the Moon, mandating orbital propellant refueling.",
+        sci_r4_lbl: "Orbital Tests",
+        sci_r4_desc: "SpaceX successfully demonstrated cryogenic propellant transfer inside Starship under NASA's Tipping Point contract.",
+        sci_body_reality: "💡 <strong>This is not science fiction:</strong> Everything you operate in this mission — from Mechazilla to cryogenic transfer — is being engineered and flight-tested today by SpaceX and NASA. Our game is a rigorous simulation of real 2038 spaceflight!",
+        btn_back_crew: "◀ BACK TO CREW",
+        btn_start_docking: "TAKE CONTROLS & INITIATE DOCKING ➔",
+
         modal_title: "🎯 HARD CAPTURE CONFIRMED!",
         toast_dock_success: "Docking latch engaged! Cryogenic umbilicals connected.",
         toast_ullage: "Ullage burn complete! Propellant settled at tank sumps.",
@@ -2035,6 +2401,7 @@
 
     function applyLanguage() {
       const d = DICT[currentLang];
+      document.getElementById('sci-nav-btn').innerText = d.sci_nav_btn;
       document.getElementById('i18n-intro-year').innerText = d.intro_year;
       document.getElementById('i18n-intro-title').innerText = d.intro_title;
       document.getElementById('i18n-intro-text').innerText = d.intro_text;
@@ -2083,6 +2450,59 @@
       document.getElementById('i18n-skill-psy').innerText = d.skill_psy;
 
       document.getElementById('i18n-btn-confirm-crew').innerText = d.btn_confirm_crew;
+      
+      // Science Briefing translation
+      document.getElementById('i18n-sci-tag').innerText = d.sci_tag;
+      document.getElementById('i18n-sci-title').innerText = d.sci_title;
+      document.getElementById('i18n-sci-tab1').innerText = d.sci_tab1;
+      document.getElementById('i18n-sci-tab2').innerText = d.sci_tab2;
+      document.getElementById('i18n-sci-tab3').innerText = d.sci_tab3;
+      document.getElementById('i18n-sci-tab4').innerText = d.sci_tab4;
+
+      document.getElementById('i18n-sci-f1-lbl').innerText = d.sci_f1_lbl;
+      document.getElementById('i18n-sci-f1-desc').innerText = d.sci_f1_desc;
+      document.getElementById('i18n-sci-f2-lbl').innerText = d.sci_f2_lbl;
+      document.getElementById('i18n-sci-f2-desc').innerText = d.sci_f2_desc;
+      document.getElementById('i18n-sci-f3-lbl').innerText = d.sci_f3_lbl;
+      document.getElementById('i18n-sci-f3-desc').innerText = d.sci_f3_desc;
+      document.getElementById('i18n-sci-f4-lbl').innerText = d.sci_f4_lbl;
+      document.getElementById('i18n-sci-f4-desc').innerText = d.sci_f4_desc;
+      document.getElementById('i18n-sci-body-launch').innerHTML = d.sci_body_launch;
+
+      document.getElementById('i18n-sci-formula-desc').innerText = d.sci_formula_desc;
+      document.getElementById('i18n-sci-t1-lbl').innerText = d.sci_t1_lbl;
+      document.getElementById('i18n-sci-t1-desc').innerText = d.sci_t1_desc;
+      document.getElementById('i18n-sci-t2-lbl').innerText = d.sci_t2_lbl;
+      document.getElementById('i18n-sci-t2-desc').innerText = d.sci_t2_desc;
+      document.getElementById('i18n-sci-t3-lbl').innerText = d.sci_t3_lbl;
+      document.getElementById('i18n-sci-t3-desc').innerText = d.sci_t3_desc;
+      document.getElementById('i18n-sci-t4-lbl').innerText = d.sci_t4_lbl;
+      document.getElementById('i18n-sci-t4-desc').innerText = d.sci_t4_desc;
+      document.getElementById('i18n-sci-body-tsiolk').innerHTML = d.sci_body_tsiolk;
+
+      document.getElementById('i18n-sci-u1-lbl').innerText = d.sci_u1_lbl;
+      document.getElementById('i18n-sci-u1-desc').innerText = d.sci_u1_desc;
+      document.getElementById('i18n-sci-u2-lbl').innerText = d.sci_u2_lbl;
+      document.getElementById('i18n-sci-u2-desc').innerText = d.sci_u2_desc;
+      document.getElementById('i18n-sci-u3-lbl').innerText = d.sci_u3_lbl;
+      document.getElementById('i18n-sci-u3-desc').innerText = d.sci_u3_desc;
+      document.getElementById('i18n-sci-u4-lbl').innerText = d.sci_u4_lbl;
+      document.getElementById('i18n-sci-u4-desc').innerText = d.sci_u4_desc;
+      document.getElementById('i18n-sci-body-ullage').innerHTML = d.sci_body_ullage;
+
+      document.getElementById('i18n-sci-r1-lbl').innerText = d.sci_r1_lbl;
+      document.getElementById('i18n-sci-r1-desc').innerText = d.sci_r1_desc;
+      document.getElementById('i18n-sci-r2-lbl').innerText = d.sci_r2_lbl;
+      document.getElementById('i18n-sci-r2-desc').innerText = d.sci_r2_desc;
+      document.getElementById('i18n-sci-r3-lbl').innerText = d.sci_r3_lbl;
+      document.getElementById('i18n-sci-r3-desc').innerText = d.sci_r3_desc;
+      document.getElementById('i18n-sci-r4-lbl').innerText = d.sci_r4_lbl;
+      document.getElementById('i18n-sci-r4-desc').innerText = d.sci_r4_desc;
+      document.getElementById('i18n-sci-body-reality').innerHTML = d.sci_body_reality;
+
+      document.getElementById('i18n-btn-back-crew').innerText = d.btn_back_crew;
+      document.getElementById('i18n-btn-start-docking').innerText = d.btn_start_docking;
+
       document.getElementById('i18n-modal-title').innerText = d.modal_title;
     }
 
@@ -2145,19 +2565,27 @@
     }
 
     /* ==========================================================
-       3. ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
+       3. ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ И ВКЛАДОК
        ========================================================== */
     function showScreen(id) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
+    function showIntroScreen() {
+      showScreen('screen-intro');
+    }
+
     function showCrewScreen() {
       showScreen('screen-crew');
     }
 
+    function showScienceScreen() {
+      showScreen('screen-science');
+    }
+
     function switchCrewTab(tab, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.crew-tabs .tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       if (tab === 'canon') {
         document.getElementById('canon-crew-grid').style.display = 'grid';
@@ -2166,6 +2594,14 @@
         document.getElementById('canon-crew-grid').style.display = 'none';
         document.getElementById('custom-crew-box').style.display = 'block';
       }
+    }
+
+    function switchScienceTab(tabId, btn) {
+      document.querySelectorAll('.science-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.science-content-box').forEach(box => box.style.display = 'none');
+      const target = document.getElementById(tabId);
+      if (target) target.style.display = 'flex';
     }
 
     function startDockingGameplay() {
