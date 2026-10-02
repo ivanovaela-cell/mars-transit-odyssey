@@ -231,15 +231,15 @@
   <div class="header-card">
     <div class="badge">🚀 ПРОИЗВОДСТВЕННЫЙ ТРЕКЕР</div>
     <h1>ПРОЕКТ «МАРСИАНСКИЙ ТРАНЗИТ» (8 НЕДЕЛЬ)</h1>
-    <div class="subtitle">Спринты: 01.10.2026 — 26.11.2026 | Стек: ПК (Godot 4) ➔ Mac (Xcode) ➔ iPhone</div>
+    <div class="subtitle">Спринты: 01.10.2026 — 26.11.2026 | Стек: Web-First (Three.js, Web Audio) ➔ Mac (Xcode) ➔ iPhone</div>
 
     <div class="progress-section">
       <div class="progress-labels">
         <span>Прогресс разработки</span>
-        <span id="progress-percent">0% (0 / 32)</span>
+        <span id="progress-percent">28% (9 / 32)</span>
       </div>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progress-fill"></div>
+        <div class="progress-bar-fill" id="progress-fill" style="width: 28%;"></div>
       </div>
     </div>
   </div>
@@ -260,59 +260,59 @@
       <div class="sprint-dates">01.10 — 14.10.2026</div>
     </div>
     
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_1">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_1" checked>
       <div class="task-content">
-        <div class="task-title">T-1.1: Установка Godot 4.3 и инициализация Git-репозитория</div>
-        <div class="task-desc">Настройка проекта на ПК, структура папок, привязка GitHub для синхронизации с Mac.</div>
+        <div class="task-title">T-1.1: Web-first архитектура (Three.js) и Git-репозиторий</div>
+        <div class="task-desc">Инициализация на Диске D:, структура папок, синхронизация с GitHub (ivanovaela-cell/mars-transit-odyssey).</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_2">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_2" checked>
       <div class="task-content">
-        <div class="task-title">T-1.2: Базовая таблица локализации (Русский + Английский)</div>
-        <div class="task-desc">Файл localization.csv (i18n), кнопка переключения языка RU/EN в углу экрана.</div>
+        <div class="task-title">T-1.2: Система локализации RU/EN с динамическим переключением</div>
+        <div class="task-desc">Полный словарь терминов, переключатель языка в шапке, поддержка двух языков во всех окнах.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_3">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_3" checked>
       <div class="task-content">
-        <div class="task-title">T-1.3: Орбитальная модель движения вокруг Земли</div>
-        <div class="task-desc">Орбита 300 км, скорость 7.7 км/с, расчет эллипса и вектора движения.</div>
+        <div class="task-title">T-1.3: Орбитальная 3D-модель (320 км, Starship и Tanker-01)</div>
+        <div class="task-desc">Земля с атмосферой (NASA Blue Marble 2K), звездный фон, 3D-модели корабля и танкера-заправщика.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_4">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_4" checked>
       <div class="task-content">
-        <div class="task-title">T-1.4: Управление маневровыми двигателями ориентации (RCS)</div>
-        <div class="task-desc">Тангаж, крен, рыскание при помощи сопел газа.</div>
+        <div class="task-title">T-1.4: Управление RCS соплами (W/S/A/D/Q/E и сенсорный пульт)</div>
+        <div class="task-desc">Линейные смещения и вращение, звуковой движок Web Audio API для импульсов сопел.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_5">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_5" checked>
       <div class="task-content">
-        <div class="task-title">T-1.5: Стыковочный интерфейс системы «Курс»</div>
-        <div class="task-desc">Визир с мишенью, индикатор дистанции и относительной скорости к танкеру.</div>
+        <div class="task-title">T-1.5: Стыковочный интерфейс системы «Курс» и телеметрия</div>
+        <div class="task-desc">Визир с мишенью, индикатор дистанции, относительной скорости и углового отклонения осей.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_6">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_6" checked>
       <div class="task-content">
-        <div class="task-title">T-1.6: Механика жесткой сцепки с танкером</div>
-        <div class="task-desc">Магнитный захват при сближении со скоростью менее 0.2 м/с.</div>
+        <div class="task-title">T-1.6: Жесткий захват стыковочного узла (Hard Capture)</div>
+        <div class="task-desc">Фиксация замков при скорости менее 0.25 м/с и точности осей, отскок при превышении скорости.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t1_7">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t1_7" checked>
       <div class="task-content">
-        <div class="task-title">T-1.7: Осаждение топлива микро-тягой (Ullage burn)</div>
-        <div class="task-desc">Импульс маневровых сопел для прижатия жидкого метана ко дну бака перед перекачкой.</div>
+        <div class="task-title">T-1.7: Осаждение топлива (Ullage burn) и заправка 1200 тонн</div>
+        <div class="task-desc">Импульс маневровых сопел для прижатия криогена ко дну баков, перекачка метана и кислорода до 100%.</div>
       </div>
     </div>
 
@@ -344,19 +344,19 @@
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t2_2">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_2" checked>
       <div class="task-content">
-        <div class="task-title">T-2.2: Канонический экипаж (4 героя)</div>
-        <div class="task-desc">Командир, Пилот, Бортинженер, Судовой врач. Портреты, характеристики и мораль.</div>
+        <div class="task-title">T-2.2: Канонический экипаж (Вэнс, Романова, Чэнь Вэй, д-р Рид)</div>
+        <div class="task-desc">Голливудские фото-досье в едином стиле Nano Banana / Runway, единая форма, фон ЦУП, шевроны.</div>
       </div>
     </div>
 
-    <div class="task-item" onclick="toggleTask(this)">
-      <input type="checkbox" class="task-checkbox" id="t2_3">
+    <div class="task-item completed" onclick="toggleTask(this)">
+      <input type="checkbox" class="task-checkbox" id="t2_3" checked>
       <div class="task-content">
-        <div class="task-title">T-2.3: Кастомный конструктор экипажа</div>
-        <div class="task-desc">Распределение очков навыков и перков («Железные нервы», «Клаустрофобия») для реиграбельности.</div>
+        <div class="task-title">T-2.3: Кастомный конструктор специализаций экипажа</div>
+        <div class="task-desc">Распределение очков квалификации, замена «перков» на аэрокосмические специализации.</div>
       </div>
     </div>
 
@@ -578,10 +578,17 @@
       if (saved) state = JSON.parse(saved);
     } catch(e) {}
 
-    // Apply state
+    // Apply state or preserve HTML default checked
     document.querySelectorAll('.task-checkbox').forEach(cb => {
-      if (state[cb.id]) {
-        cb.checked = true;
+      if (state[cb.id] !== undefined) {
+        cb.checked = state[cb.id];
+        if (cb.checked) {
+          cb.closest('.task-item').classList.add('completed');
+        } else {
+          cb.closest('.task-item').classList.remove('completed');
+        }
+      } else if (cb.checked) {
+        state[cb.id] = true;
         cb.closest('.task-item').classList.add('completed');
       }
     });
