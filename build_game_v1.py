@@ -265,16 +265,19 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       justify-content: space-between;
       align-items: center;
       font-size: 10px;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       color: #7b91b0;
       font-weight: 700;
+      white-space: nowrap;
+      gap: 6px;
     }
     .crew-agency-tag {
       color: #00d2ff;
       background: rgba(0, 210, 255, 0.1);
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid rgba(0, 210, 255, 0.25);
+      white-space: nowrap;
     }
     .crew-photo-wrap {
       width: 100%;
@@ -679,7 +682,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <!-- 1. Commander Alex Vance -->
         <div class="crew-card">
           <div class="crew-card-header">
-            <span class="crew-agency-tag">NASA // SPACEX</span>
+            <span class="crew-agency-tag" id="i18n-agency-1">NASA // SPACEX</span>
             <span>ID: AR1-01 // CDR</span>
           </div>
           <div class="crew-photo-wrap">
@@ -704,7 +707,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <!-- 2. Pilot Elena Romanova -->
         <div class="crew-card">
           <div class="crew-card-header">
-            <span class="crew-agency-tag">РОСКОСМОС</span>
+            <span class="crew-agency-tag" id="i18n-agency-2">РОСКОСМОС</span>
             <span>ID: AR1-02 // PLT</span>
           </div>
           <div class="crew-photo-wrap">
@@ -729,7 +732,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <!-- 3. Engineer Chen Wei -->
         <div class="crew-card">
           <div class="crew-card-header">
-            <span class="crew-agency-tag">CNSA // MARS OPS</span>
+            <span class="crew-agency-tag" id="i18n-agency-3">CNSA // МАРС</span>
             <span>ID: AR1-03 // ENG</span>
           </div>
           <div class="crew-photo-wrap">
@@ -754,7 +757,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <!-- 4. Dr. Marcus Reid -->
         <div class="crew-card">
           <div class="crew-card-header">
-            <span class="crew-agency-tag">ESA // BIO-MED</span>
+            <span class="crew-agency-tag" id="i18n-agency-4">ESA // МЕДИЦИНА</span>
             <span>ID: AR1-04 // MED</span>
           </div>
           <div class="crew-photo-wrap">
@@ -929,6 +932,10 @@ __ORBIT_SRC__
         crew_eng_role: "Бортинженер",
         crew_eng_spec: "Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП",
         crew_med_name: "д-р Маркус Рид",
+        agency_1: "NASA // SPACEX",
+        agency_2: "РОСКОСМОС",
+        agency_3: "CNSA // МАРС",
+        agency_4: "ESA // МЕДИЦИНА",
         crew_med_role: "Судовой врач",
         crew_med_spec: "Микрогравитация и травматология: +20% био-буфер",
         crew_status: "К ПОЛЕТУ ДОПУЩЕН",
@@ -954,6 +961,10 @@ __ORBIT_SRC__
         tab_canon: "NOMINAL CREW (CANON)",
         tab_custom: "CUSTOM CREW BUILDER",
         spec_lbl: "🎖️ SPECIALIZATION:",
+        agency_1: "NASA // SPACEX",
+        agency_2: "ROSCOSMOS",
+        agency_3: "CNSA // MARS",
+        agency_4: "ESA // BIO-MED",
         crew_cmdr_name: "Alex Vance",
         crew_cmdr_role: "Mission Commander",
         crew_cmdr_spec: "Damage Control: +15% crisis resolution rate",
@@ -997,6 +1008,12 @@ __ORBIT_SRC__
       document.getElementById('i18n-crew-briefing').innerHTML = d.crew_briefing;
       document.getElementById('i18n-tab-canon').innerText = d.tab_canon;
       document.getElementById('i18n-tab-custom').innerText = d.tab_custom;
+
+      // Agency tags
+      document.getElementById('i18n-agency-1').innerText = d.agency_1;
+      document.getElementById('i18n-agency-2').innerText = d.agency_2;
+      document.getElementById('i18n-agency-3').innerText = d.agency_3;
+      document.getElementById('i18n-agency-4').innerText = d.agency_4;
 
       // Specialization labels
       for (let i = 1; i <= 4; i++) {
