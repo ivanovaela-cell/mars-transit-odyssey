@@ -865,7 +865,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="crew-role" id="i18n-crew-cmdr-role">Командир корабля</div>
           <div class="crew-spec-box">
             <span class="crew-spec-tag" id="i18n-spec-lbl-1">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
-            <div class="crew-spec-desc" id="i18n-crew-cmdr-spec">Борьба за живучесть: +15% к ликвидации системных сбоев</div>
+            <div class="crew-spec-desc" id="i18n-crew-cmdr-spec">Аварийное управление: аварии устраняются на 15% быстрее</div>
           </div>
           <div class="crew-status">
             <span class="status-dot"></span>
@@ -890,7 +890,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="crew-role" id="i18n-crew-plt-role">Главный пилот</div>
           <div class="crew-spec-box">
             <span class="crew-spec-tag" id="i18n-spec-lbl-2">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
-            <div class="crew-spec-desc" id="i18n-crew-plt-spec">Ручное сближение «Курс»: +20% точность соосности</div>
+            <div class="crew-spec-desc" id="i18n-crew-plt-spec">Пилотирование: +20% к точности ручной стыковки</div>
           </div>
           <div class="crew-status">
             <span class="status-dot"></span>
@@ -915,7 +915,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="crew-role" id="i18n-crew-eng-role">Бортинженер</div>
           <div class="crew-spec-box">
             <span class="crew-spec-tag" id="i18n-spec-lbl-3">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
-            <div class="crew-spec-desc" id="i18n-crew-eng-spec">Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП</div>
+            <div class="crew-spec-desc" id="i18n-crew-eng-spec">Инженерия: -25% износ двигателей и расход запчастей</div>
           </div>
           <div class="crew-status">
             <span class="status-dot"></span>
@@ -940,7 +940,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="crew-role" id="i18n-crew-med-role">Судовой врач</div>
           <div class="crew-spec-box">
             <span class="crew-spec-tag" id="i18n-spec-lbl-4">🎖️ СПЕЦИАЛИЗАЦИЯ:</span>
-            <div class="crew-spec-desc" id="i18n-crew-med-spec">Микрогравитация и травматология: +20% био-буфер</div>
+            <div class="crew-spec-desc" id="i18n-crew-med-spec">Биомедицина: +20% к запасу здоровья экипажа в невесомости</div>
           </div>
           <div class="crew-status">
             <span class="status-dot"></span>
@@ -959,7 +959,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
             <input class="cc-input" id="cc-name" maxlength="24">
             <select class="cc-input" id="cc-role"></select>
             <select class="cc-input" id="cc-agency"></select>
-            <div class="cc-pts"><span id="cc-t-pts"></span> <strong id="cc-pts-left">12</strong></div>
+            <div class="cc-pts"><span id="cc-t-pts"></span> <strong id="cc-pts-left">15</strong></div>
             <div id="cc-skills"></div>
             <div class="cc-perks" id="cc-perks"></div>
             <button class="btn-glow" style="width:100%" onclick="ccAdd()" id="cc-add-btn"></button>
@@ -1255,16 +1255,16 @@ __ORBIT_SRC__
         agency_4: "ESA // МЕДИЦИНА",
         crew_cmdr_name: "Алекс Вэнс",
         crew_cmdr_role: "Командир корабля",
-        crew_cmdr_spec: "Борьба за живучесть: +15% к ликвидации системных сбоев",
+        crew_cmdr_spec: "Аварийное управление: аварии устраняются на 15% быстрее",
         crew_plt_name: "Елена Романова",
         crew_plt_role: "Главный пилот",
-        crew_plt_spec: "Ручное сближение «Курс»: +20% точность соосности",
+        crew_plt_spec: "Пилотирование: +20% к точности ручной стыковки",
         crew_eng_name: "Чэнь Вэй",
         crew_eng_role: "Бортинженер",
-        crew_eng_spec: "Двигатели Raptor 3: -25% износ агрегатов и расход ЗИП",
+        crew_eng_spec: "Инженерия: -25% износ двигателей и расход запчастей",
         crew_med_name: "д-р Маркус Рид",
         crew_med_role: "Судовой врач",
-        crew_med_spec: "Микрогравитация и травматология: +20% био-буфер",
+        crew_med_spec: "Биомедицина: +20% к запасу здоровья экипажа в невесомости",
         crew_status: "К ПОЛЕТУ ДОПУЩЕН",
         custom_desc: "Распределите очки квалификации экипажа (доступно: 12 очков):",
         skill_pilot: "Пилотирование",
@@ -1383,16 +1383,16 @@ __ORBIT_SRC__
         agency_4: "ESA // BIO-MED",
         crew_cmdr_name: "Alex Vance",
         crew_cmdr_role: "Mission Commander",
-        crew_cmdr_spec: "Damage Control: +15% crisis resolution rate",
+        crew_cmdr_spec: "Crisis Management: emergencies fixed 15% faster",
         crew_plt_name: "Elena Romanova",
         crew_plt_role: "Chief Pilot",
-        crew_plt_spec: "Kurs Manual Rendezvous: +20% alignment accuracy",
+        crew_plt_spec: "Piloting: +20% manual docking accuracy",
         crew_eng_name: "Chen Wei",
         crew_eng_role: "Flight Engineer",
-        crew_eng_spec: "Raptor 3 Propulsion: -25% component wear & spare parts",
+        crew_eng_spec: "Engineering: -25% engine wear and spare parts use",
         crew_med_name: "Dr. Marcus Reid",
         crew_med_role: "Chief Medical Officer",
-        crew_med_spec: "Zero-G Trauma Care: +20% crew bio-resilience",
+        crew_med_spec: "Biomedicine: +20% crew health reserve in zero-G",
         crew_status: "FLIGHT CERTIFIED",
         custom_desc: "Allocate crew qualification points (12 points available):",
         skill_pilot: "Piloting",
@@ -1796,34 +1796,34 @@ __ORBIT_SRC__
 
     /* ===== CREW CONSTRUCTOR ===== */
     const CC_AVATARS = ['👩‍🚀', '👨‍🚀', '🧑‍🚀', '👩🏾‍🚀', '👨🏿‍🚀', '👩🏻‍🚀', '👨🏽‍🚀', '🤖'];
-    const CC_SKILLS = ['pilot', 'eng', 'med', 'psy'];
-    const CC_ICONS = { pilot: '🚀', eng: '🔧', med: '🧬', psy: '🧠' };
-    const CC_MAX_POINTS = 12, CC_MAX_SKILL = 8, CC_MAX_CREW = 4;
+    const CC_SKILLS = ['pilot', 'eng', 'med', 'psy', 'crisis'];
+    const CC_ICONS = { pilot: '🚀', eng: '🔧', med: '🧬', psy: '🧠', crisis: '🚨' };
+    const CC_MAX_POINTS = 15, CC_MAX_SKILL = 8, CC_MAX_CREW = 4;
     const CC_T = {
       ru: {
         newm: 'НОВЫЙ ЧЛЕН ЭКИПАЖА', upload: '📷 или загрузить своё фото', name: 'Имя и фамилия', pts: 'Осталось очков:',
         roster: 'ВАШ ЭКИПАЖ', add: '＋ ДОБАВИТЬ В ЭКИПАЖ', del: 'Убрать',
-        pilot: 'Пилотирование', eng: 'Инженерия СЖО/ДУ', med: 'Биомедицина', psy: 'Психоустойчивость',
-        perk_pilot: 'точность сближения', perk_eng: 'меньше износ агрегатов', perk_med: 'био-буфер', perk_psy: 'стойкость к стрессу',
+        pilot: 'Пилотирование', eng: 'Инженерия', med: 'Биомедицина', psy: 'Психоустойчивость', crisis: 'Аварийное управление',
+        perk_pilot: 'точность стыковки', perk_eng: 'меньше износ двигателей', perk_med: 'запас здоровья в невесомости', perk_psy: 'стойкость к стрессу', perk_crisis: 'быстрее устранение аварий',
         roles: { cdr: 'Командир', plt: 'Пилот', eng: 'Бортинженер', med: 'Врач', sci: 'Учёный' },
         agencies: { nasa: 'NASA', spacex: 'SpaceX', roscosmos: 'Роскосмос', esa: 'ESA', cnsa: 'CNSA', jaxa: 'JAXA', isro: 'ISRO' },
-        need_name: 'Введите имя', full: 'Экипаж полный (максимум 4)', need_pts: 'Распределите все 12 очков', empty: 'Добавьте хотя бы одного члена экипажа',
+        need_name: 'Введите имя', full: 'Экипаж полный (максимум 4)', need_pts: 'Распределите все 15 очков', empty: 'Добавьте хотя бы одного члена экипажа',
         empty_list: 'Пока никого. Создайте первого!', ok: 'Экипаж утверждён'
       },
       en: {
         newm: 'NEW CREW MEMBER', upload: '📷 or upload your own photo', name: 'Full name', pts: 'Points left:',
         roster: 'YOUR CREW', add: '＋ ADD TO CREW', del: 'Remove',
-        pilot: 'Piloting', eng: 'Life-support / Propulsion eng.', med: 'Biomedicine', psy: 'Psychological resilience',
-        perk_pilot: 'docking precision', perk_eng: 'less hardware wear', perk_med: 'bio-buffer', perk_psy: 'stress resistance',
+        pilot: 'Piloting', eng: 'Engineering', med: 'Biomedicine', psy: 'Psychological resilience', crisis: 'Crisis Management',
+        perk_pilot: 'docking accuracy', perk_eng: 'less engine wear', perk_med: 'health reserve in zero-G', perk_psy: 'stress resistance', perk_crisis: 'faster emergency fixes',
         roles: { cdr: 'Commander', plt: 'Pilot', eng: 'Flight Engineer', med: 'Medical Officer', sci: 'Scientist' },
         agencies: { nasa: 'NASA', spacex: 'SpaceX', roscosmos: 'Roscosmos', esa: 'ESA', cnsa: 'CNSA', jaxa: 'JAXA', isro: 'ISRO' },
-        need_name: 'Enter a name', full: 'Crew is full (max 4)', need_pts: 'Spend all 12 points', empty: 'Add at least one crew member', 
+        need_name: 'Enter a name', full: 'Crew is full (max 4)', need_pts: 'Spend all 15 points', empty: 'Add at least one crew member', 
         empty_list: 'Nobody yet. Create your first!', ok: 'Crew approved'
       }
     };
     let ccCrew = [];
     try { ccCrew = JSON.parse(localStorage.getItem('ares1_custom_crew') || '[]'); } catch (e) { ccCrew = []; }
-    let ccDraft = { avatar: CC_AVATARS[0], photo: null, skills: { pilot: 0, eng: 0, med: 0, psy: 0 } };
+    let ccDraft = { avatar: CC_AVATARS[0], photo: null, skills: { pilot: 0, eng: 0, med: 0, psy: 0, crisis: 0 } };
     let ccTabActive = false;
 
     function ccLeft() { return CC_MAX_POINTS - CC_SKILLS.reduce((a, k) => a + ccDraft.skills[k], 0); }
@@ -1878,7 +1878,7 @@ __ORBIT_SRC__
           <button onclick="ccAdj('${k}',-1)">−</button><span class="val">${ccDraft.skills[k]}</span><button onclick="ccAdj('${k}',1)">+</button></div>`).join('');
       document.getElementById('cc-pts-left').innerText = ccLeft();
       document.getElementById('cc-perks').innerText = CC_SKILLS.filter(k => ccDraft.skills[k] > 0)
-        .map(k => `${CC_ICONS[k]} +${ccDraft.skills[k] * 3}% ${t['perk_' + k]}`).join('  ·  ');
+        .map(k => `${CC_ICONS[k]} +${ccDraft.skills[k] * 5}% ${t['perk_' + k]}`).join('  ·  ');
     }
     function ccAdj(k, d) {
       const v = ccDraft.skills[k] + d;
@@ -1896,7 +1896,7 @@ __ORBIT_SRC__
         avatar: ccDraft.avatar, photo: ccDraft.photo, skills: Object.assign({}, ccDraft.skills) });
       ccSave();
       document.getElementById('cc-name').value = '';
-      ccDraft.skills = { pilot: 0, eng: 0, med: 0, psy: 0 };
+      ccDraft.skills = { pilot: 0, eng: 0, med: 0, psy: 0, crisis: 0 };
       ccRenderSkills(); ccRenderList();
     }
     function ccDel(i) { ccCrew.splice(i, 1); ccSave(); ccRenderList(); }
