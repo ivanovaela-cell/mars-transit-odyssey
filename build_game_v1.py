@@ -1000,91 +1000,85 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       <div class="science-content-box" id="tab-launch">
         <div class="science-card-grid">
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-f1-val">5 000 т</div>
-            <div class="sci-fact-label" id="i18n-sci-f1-lbl">Стартовая масса системы</div>
-            <div class="sci-fact-desc" id="i18n-sci-f1-desc">Super Heavy + Starship. Самая гигантская ракета в истории (в 2 раза мощнее лунной Saturn V).</div>
+            <div class="sci-fact-val" id="i18n-sci-f1-val">5 000 тонн</div>
+            <div class="sci-fact-label" id="i18n-sci-f1-lbl">Вес на старте — как 11 Боингов-747</div>
+            <div class="sci-fact-desc" id="i18n-sci-f1-desc">Super Heavy + Starship — самая большая ракета в истории. Тяга вдвое больше, чем у лунной Saturn V.</div>
           </div>
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-f2-val">33 Raptor 3</div>
-            <div class="sci-fact-label" id="i18n-sci-f2-lbl">Тяга первой ступени</div>
-            <div class="sci-fact-desc" id="i18n-sci-f2-desc">7 500 тонн совокупной тяги на метане (CH4) и жидком кислороде (LOX). Давление в камере 350 атм.</div>
+            <div class="sci-fact-val" id="i18n-sci-f2-val">7 500 тонн тяги</div>
+            <div class="sci-fact-label" id="i18n-sci-f2-lbl">33 двигателя Raptor</div>
+            <div class="sci-fact-desc" id="i18n-sci-f2-desc">Ракета весит 5 000 тонн, а двигатели толкают вверх с силой 7 500. Эта разница и есть ускорение: ракета не просто висит, а рвётся вверх. Топливо — метан и жидкий кислород.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f3-val">Hot-Staging</div>
-            <div class="sci-fact-label" id="i18n-sci-f3-lbl">Горячее разделение</div>
-            <div class="sci-fact-desc" id="i18n-sci-f3-desc">Двигатели Starship зажигаются прямо перед отделением ступени через перфорированное титановое кольцо.</div>
+            <div class="sci-fact-label" id="i18n-sci-f3-lbl">Зажигание «на лету»</div>
+            <div class="sci-fact-desc" id="i18n-sci-f3-desc">Корабль включает свои двигатели ещё до отделения от бустера и буквально отталкивается от него огнём. Ни секунды потерь.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f4-val">28 000 км/ч</div>
-            <div class="sci-fact-label" id="i18n-sci-f4-lbl">Первая космическая (v1)</div>
-            <div class="sci-fact-desc" id="i18n-sci-f4-desc">Скорость 7.8 км/с, позволяющая «падать мимо Земли» по круговой орбите высотой 320 км.</div>
+            <div class="sci-fact-label" id="i18n-sci-f4-lbl">Скорость, чтобы не упасть</div>
+            <div class="sci-fact-desc" id="i18n-sci-f4-desc">Чтобы остаться на орбите, нужно лететь так быстро, что Земля уходит из-под корабля быстрее, чем он падает. Он падает вечно — и вечно промахивается мимо планеты.</div>
           </div>
         </div>
-        <div class="sci-body-text" id="i18n-sci-body-launch">
-          💡 <strong>Как мы здесь оказались:</strong> Чтобы подняться на высоту 320 км и преодолеть гравитацию и сопротивление атмосферы, ракета сожгла колоссальные 3 400 тонн топлива бустера и 1 100 тонн самого корабля. Корабль на орбите — но его баки практически пусты!
-        </div>
+        <div class="sci-body-text" id="i18n-sci-body-launch">💡 <strong>Как мы здесь оказались:</strong> подъём на 320 км — это не про высоту, а про скорость. Высоту набрать легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в бустере и 1 100 в самом корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Вы начинаете игру с пустым баком.</div>
       </div>
 
       <!-- Tab 2: Tsiolkovsky Equation -->
       <div class="science-content-box" id="tab-tsiolkovsky" style="display: none;">
         <div class="sci-formula-box">
           <div class="sci-formula">Δv = I_sp · g_0 · ln(m_0 / m_k)</div>
-          <div class="sci-formula-desc" id="i18n-sci-formula-desc">Формула Циолковского (1903 г.): «Тирания ракетного уравнения»</div>
+          <div class="sci-formula-desc" id="i18n-sci-formula-desc">Формула Циолковского (1903): чтобы лететь быстрее, топлива нужно не чуть больше, а в разы</div>
         </div>
         <div class="science-card-grid">
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-t1-val">92%</div>
-            <div class="sci-fact-label" id="i18n-sci-t1-lbl">Сгорело при старте</div>
-            <div class="sci-fact-desc" id="i18n-sci-t1-desc">Ракета несёт топливо, чтобы разгонять само топливо. Масса растет экспоненциально!</div>
+            <div class="sci-fact-label" id="i18n-sci-t1-lbl">Топлива сгорело ради орбиты</div>
+            <div class="sci-fact-desc" id="i18n-sci-t1-desc">Ракета везёт топливо, чтобы разгонять… то же самое топливо. Каждая лишняя тонна груза требует ещё несколько тонн топлива. Это «тирания ракетного уравнения».</div>
           </div>
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-t2-val">8% (96 т)</div>
-            <div class="sci-fact-label" id="i18n-sci-t2-lbl">Остаток на орбите</div>
-            <div class="sci-fact-desc" id="i18n-sci-t2-desc">Этого хватит лишь на свод с орбиты, но ни о каком Марсе речи быть не может.</div>
+            <div class="sci-fact-val" id="i18n-sci-t2-val">96 тонн</div>
+            <div class="sci-fact-label" id="i18n-sci-t2-lbl">Осталось в баках (8%)</div>
+            <div class="sci-fact-desc" id="i18n-sci-t2-desc">Этого хватит, чтобы управлять кораблём на орбите и вернуться на Землю. До Марса с таким запасом не добраться.</div>
           </div>
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-t3-val">3 600 м/с</div>
-            <div class="sci-fact-label" id="i18n-sci-t3-lbl">Импульс TMI к Марсу</div>
-            <div class="sci-fact-desc" id="i18n-sci-t3-desc">Необходимая характеристическая скорость для перехода на трансферную орбиту Гомана к Марсу.</div>
+            <div class="sci-fact-val" id="i18n-sci-t3-val">3,6 км/с</div>
+            <div class="sci-fact-label" id="i18n-sci-t3-lbl">Разгон до Марса</div>
+            <div class="sci-fact-desc" id="i18n-sci-t3-desc">Чтобы улететь с орбиты Земли к Марсу, нужно добавить к скорости ещё 3,6 км/с. Это один мощный толчок двигателей — после него корабль летит почти без тяги много месяцев.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-t4-val">1 200 тонн</div>
-            <div class="sci-fact-label" id="i18n-sci-t4-lbl">Целевая дозаправка</div>
-            <div class="sci-fact-desc" id="i18n-sci-t4-desc">Полные баки на орбите дают кораблю запас скорости 6.9 км/с — гарантия перелета и посадки!</div>
+            <div class="sci-fact-label" id="i18n-sci-t4-lbl">Полные баки</div>
+            <div class="sci-fact-desc" id="i18n-sci-t4-desc">Заправленный до краёв корабль получает запас скорости около 6,9 км/с: хватит на разгон к Марсу, торможение и посадку. Недостающие тонны топлива привезут танкеры.</div>
           </div>
         </div>
-        <div class="sci-body-text" id="i18n-sci-body-tsiolk">
-          💡 <strong>Вся правда без иллюзий:</strong> Ни одна ракета в мире не способна стартовать с Земли сразу к Марсу с жилым модулем на 100 тонн. Единственный физически возможный путь в Солнечной системе — вывести корабль на орбиту, а затем серией танкеров наполнить его баки. Без орбитальной дозаправки полет на Марс невозможен!
-        </div>
+        <div class="sci-body-text" id="i18n-sci-body-tsiolk">💡 <strong>Вся правда без иллюзий:</strong> корабль такого размера не может взять при старте и экипаж, и всё топливо на дорогу до Марса. Поэтому сначала его выводят на орбиту почти пустым, а потом танкеры один за другим привозят топливо. Ваша задача — принять его: сначала стыковка, потом перекачка.</div>
       </div>
 
       <!-- Tab 3: Cryogenics & Ullage -->
       <div class="science-content-box" id="tab-ullage" style="display: none;">
         <div class="science-card-grid">
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-u1-val">-161°C / -183°C</div>
-            <div class="sci-fact-label" id="i18n-sci-u1-lbl">Криогенная пара</div>
-            <div class="sci-fact-desc" id="i18n-sci-u1-desc">Жидкий метан (CH4) и жидкий кислород (LOX). Требуют вакуумной теплоизоляции баков.</div>
+            <div class="sci-fact-val" id="i18n-sci-u1-val">−161 °C и −183 °C</div>
+            <div class="sci-fact-label" id="i18n-sci-u1-lbl">Топливо холоднее Антарктиды</div>
+            <div class="sci-fact-desc" id="i18n-sci-u1-desc">Жидкий метан кипит при −161 °C, жидкий кислород — при −183 °C. Для сравнения, в Антарктиде рекорд мороза — около −89 °C. Без теплоизоляции топливо выкипает.</div>
           </div>
           <div class="sci-fact-card">
-            <div class="sci-fact-val" id="i18n-sci-u2-val">0g Невесомость</div>
-            <div class="sci-fact-label" id="i18n-sci-u2-lbl">Поведение жидкости</div>
-            <div class="sci-fact-desc" id="i18n-sci-u2-desc">В невесомости жидкость не прижата ко дну, а плавает пузырями и липнет к стенкам бака.</div>
+            <div class="sci-fact-val" id="i18n-sci-u2-val">0g</div>
+            <div class="sci-fact-label" id="i18n-sci-u2-lbl">В невесомости жидкость не течёт вниз</div>
+            <div class="sci-fact-desc" id="i18n-sci-u2-desc">Нет «низа» — нет и дна. Жидкость собирается в плавающие шары и растекается по стенкам бака. Как вода на МКС: пролейте — и получите шар.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-u3-val">Кавитация ⚠️</div>
-            <div class="sci-fact-label" id="i18n-sci-u3-lbl">Смертельная опасность</div>
-            <div class="sci-fact-desc" id="i18n-sci-u3-desc">Если турбонасос захватит пузырь газа при 30 000 об/мин — крыльчатку разорвет, а двигатель взорвется.</div>
+            <div class="sci-fact-label" id="i18n-sci-u3-lbl">Пузырь в насосе — взрыв</div>
+            <div class="sci-fact-desc" id="i18n-sci-u3-desc">Турбонасос крутится со скоростью 30 000 оборотов в минуту. Если вместо жидкости он схватит пузырь газа, лопасти разорвёт, а двигатель взорвётся.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-u4-val">Ullage Burn 🔥</div>
-            <div class="sci-fact-label" id="i18n-sci-u4-lbl">Импульс осаждения</div>
-            <div class="sci-fact-desc" id="i18n-sci-u4-desc">Включение сопел RCS дает ускорение 0.02g: криоген оседает на дно баков к насосам перекачки.</div>
+            <div class="sci-fact-label" id="i18n-sci-u4-lbl">Лёгкий толчок возвращает «низ»</div>
+            <div class="sci-fact-desc" id="i18n-sci-u4-desc">Маленькие двигатели (RCS) слегка разгоняют корабль, и жидкость по инерции прижимается ко дну бака — как кофе в ускоряющейся машине. Нужно всего 0,02 g — в 50 раз слабее земной тяжести.</div>
           </div>
         </div>
-        <div class="sci-body-text" id="i18n-sci-body-ullage">
-          💡 <strong>Инженерная процедура:</strong> Прежде чем перекачивать 1200 тонн метана, экипаж обязан выдать импульс осаждения (Ullage Burn). Как только топливо прижмется ко дну, открываются криогенные магистрали высокого давления.
-        </div>
+        <div class="sci-body-text" id="i18n-sci-body-ullage">💡 <strong>Правило перекачки:</strong> сначала толчок, потом насос. Прежде чем перекачивать сотни тонн метана, экипаж даёт импульс осаждения. Только когда топливо осело на дно, открываются магистрали. Пропустите этот шаг — и насос захлебнётся газом.</div>
       </div>
 
       <!-- Tab 4: Real XXI Century Engineering -->
@@ -1092,28 +1086,26 @@ HTML_CONTENT = r'''<!DOCTYPE html>
         <div class="science-card-grid">
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-r1-val">Starbase</div>
-            <div class="sci-fact-label" id="i18n-sci-r1-lbl">Бока-Чика, Техас</div>
-            <div class="sci-fact-desc" id="i18n-sci-r1-desc">Реальная фабрика Starfactory и стартовые комплексы, строящие флот многоразовых кораблей.</div>
+            <div class="sci-fact-label" id="i18n-sci-r1-lbl">Город ракет в Техасе</div>
+            <div class="sci-fact-desc" id="i18n-sci-r1-desc">Бока-Чика, Техас: здесь SpaceX строит и запускает Starship. Здесь же стоит башня, которая ловит ракеты.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-r2-val">Mechazilla</div>
-            <div class="sci-fact-label" id="i18n-sci-r2-lbl">Поимка в воздухе</div>
-            <div class="sci-fact-desc" id="i18n-sci-r2-desc">В октябре 2024 (полет IFT-5) 71-метровый бустер Super Heavy впервые в истории пойман башней Mechazilla!</div>
+            <div class="sci-fact-label" id="i18n-sci-r2-lbl">Ракету поймали руками</div>
+            <div class="sci-fact-desc" id="i18n-sci-r2-desc">13 октября 2024 года, пятый испытательный полёт: 71-метровый бустер Super Heavy вернулся и был пойман в воздухе «палочками» башни Mechazilla. Раньше это считали фантастикой.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-r3-val">NASA Artemis</div>
-            <div class="sci-fact-label" id="i18n-sci-r3-lbl">Лунная программа США</div>
-            <div class="sci-fact-desc" id="i18n-sci-r3-desc">NASA официально выбрало Starship HLS для высадки людей на Луну с обязательной орбитальной дозаправкой.</div>
+            <div class="sci-fact-label" id="i18n-sci-r3-lbl">Луна через дозаправку</div>
+            <div class="sci-fact-desc" id="i18n-sci-r3-desc">NASA выбрало Starship для посадки астронавтов на Луну. Для этого ему тоже нужна дозаправка на орбите — как в нашей игре.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-r4-val">Tipping Point</div>
-            <div class="sci-fact-label" id="i18n-sci-r4-lbl">Орбитальные тесты</div>
-            <div class="sci-fact-desc" id="i18n-sci-r4-desc">SpaceX уже успешно провела первый этап испытаний перекачки криогена в космосе по контракту NASA.</div>
+            <div class="sci-fact-label" id="i18n-sci-r4-lbl">Заправка в космосе: пока тесты</div>
+            <div class="sci-fact-desc" id="i18n-sci-r4-desc">По контракту NASA Tipping Point SpaceX отработала перекачку жидкого кислорода между баками внутри корабля. Перекачка между двумя кораблями на орбите — следующий шаг.</div>
           </div>
         </div>
-        <div class="sci-body-text" id="i18n-sci-body-reality">
-          💡 <strong>Это не фантастика:</strong> Всё, чем вы управляете в этой миссии — от башни обслуживания до криогенной перекачки — строится и тестируется прямо сейчас инженерами SpaceX и NASA. Наша игра — это строгая проекция реальной космонавтики 2038 года!
-        </div>
+        <div class="sci-body-text" id="i18n-sci-body-reality">💡 <strong>Это не фантастика:</strong> всё, что вы делаете в этой миссии — стыковка, перекачка криогена — это реальные задачи, над которыми сегодня работают инженеры SpaceX и NASA. Мы лишь перенесли их в 2038 год.</div>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
@@ -1283,59 +1275,59 @@ __ORBIT_SRC__
         sci_tab2: "⛽ 2. УРАВНЕНИЕ ЦИОЛКОВСКОГО",
         sci_tab3: "❄️ 3. КРИОГЕН И НЕВЕСОМОСТЬ (0g)",
         sci_tab4: "🛠️ 4. РЕАЛЬНОСТЬ XXI ВЕКА",
-        sci_f1_val: "5 000 т",
-        sci_f1_lbl: "Стартовая масса системы",
-        sci_f1_desc: "Super Heavy + Starship. Самая гигантская ракета в истории (в 2 раза мощнее лунной Saturn V).",
-        sci_f2_val: "33 Raptor 3",
-        sci_f2_lbl: "Тяга первой ступени",
-        sci_f2_desc: "7 500 тонн совокупной тяги на метане (CH4) и жидком кислороде (LOX). 33 двигателя Raptor 3.",
+        sci_f1_val: "5 000 тонн",
+        sci_f1_lbl: "Вес на старте — как 11 Боингов-747",
+        sci_f1_desc: "Super Heavy + Starship — самая большая ракета в истории. Тяга вдвое больше, чем у лунной Saturn V.",
+        sci_f2_val: "7 500 тонн тяги",
+        sci_f2_lbl: "33 двигателя Raptor",
+        sci_f2_desc: "Ракета весит 5 000 тонн, а двигатели толкают вверх с силой 7 500. Эта разница и есть ускорение: ракета не просто висит, а рвётся вверх. Топливо — метан и жидкий кислород.",
         sci_f3_val: "Hot-Staging",
-        sci_f3_lbl: "Горячее разделение",
-        sci_f3_desc: "Двигатели Starship зажигаются прямо перед отделением ступени через титановое кольцо (Hot-staging).",
+        sci_f3_lbl: "Зажигание «на лету»",
+        sci_f3_desc: "Корабль включает свои двигатели ещё до отделения от бустера и буквально отталкивается от него огнём. Ни секунды потерь.",
         sci_f4_val: "28 000 км/ч",
-        sci_f4_lbl: "Первая космическая (v1)",
-        sci_f4_desc: "Скорость 28 000 км/ч (7.8 км/с), позволяющая «падать мимо Земли» по круговой орбите 320 км.",
-        sci_body_launch: "💡 <strong>Как мы здесь оказались:</strong> Чтобы подняться на высоту 320 км и преодолеть гравитацию и сопротивление атмосферы, ракета сожгла колоссальные 3 400 тонн топлива бустера и 1 100 тонн самого корабля. Корабль на орбите — но его баки практически пусты!",
-        sci_formula_desc: "Формула Циолковского (1903 г.): «Тирания ракетного уравнения»",
+        sci_f4_lbl: "Скорость, чтобы не упасть",
+        sci_f4_desc: "Чтобы остаться на орбите, нужно лететь так быстро, что Земля уходит из-под корабля быстрее, чем он падает. Он падает вечно — и вечно промахивается мимо планеты.",
+        sci_body_launch: "💡 <strong>Как мы здесь оказались:</strong> подъём на 320 км — это не про высоту, а про скорость. Высоту набрать легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в бустере и 1 100 в самом корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Вы начинаете игру с пустым баком.",
+        sci_formula_desc: "Формула Циолковского (1903): чтобы лететь быстрее, топлива нужно не чуть больше, а в разы",
         sci_t1_val: "92%",
-        sci_t1_lbl: "Сгорело при старте",
-        sci_t1_desc: "Ракета несёт топливо, чтобы разгонять само топливо. Масса растет экспоненциально!",
-        sci_t2_val: "8% (96 т)",
-        sci_t2_lbl: "Остаток на орбите",
-        sci_t2_desc: "Этого хватит лишь на свод с орбиты, но ни о каком Марсе речи быть не может.",
-        sci_t3_val: "3 600 м/с",
-        sci_t3_lbl: "Импульс TMI к Марсу",
-        sci_t3_desc: "Необходимая характеристическая скорость для перехода на трансферную орбиту Гомана к Марсу.",
+        sci_t1_lbl: "Топлива сгорело ради орбиты",
+        sci_t1_desc: "Ракета везёт топливо, чтобы разгонять… то же самое топливо. Каждая лишняя тонна груза требует ещё несколько тонн топлива. Это «тирания ракетного уравнения».",
+        sci_t2_val: "96 тонн",
+        sci_t2_lbl: "Осталось в баках (8%)",
+        sci_t2_desc: "Этого хватит, чтобы управлять кораблём на орбите и вернуться на Землю. До Марса с таким запасом не добраться.",
+        sci_t3_val: "3,6 км/с",
+        sci_t3_lbl: "Разгон до Марса",
+        sci_t3_desc: "Чтобы улететь с орбиты Земли к Марсу, нужно добавить к скорости ещё 3,6 км/с. Это один мощный толчок двигателей — после него корабль летит почти без тяги много месяцев.",
         sci_t4_val: "1 200 тонн",
-        sci_t4_lbl: "Целевая дозаправка",
-        sci_t4_desc: "Полные баки на орбите дают кораблю запас скорости 6.9 км/с — гарантия перелета и посадки!",
-        sci_body_tsiolk: "💡 <strong>Вся правда без иллюзий:</strong> Ни одна ракета в мире не способна стартовать с Земли сразу к Марсу с жилым модулем на 100 тонн. Единственный физически возможный путь в Солнечной системе — вывести корабль на орбиту, а затем серией танкеров наполнить его баки. Без орбитальной дозаправки полет на Марс невозможен!",
-        sci_u1_val: "-161°C / -183°C",
-        sci_u1_lbl: "Криогенная пара",
-        sci_u1_desc: "Жидкий метан (-161°C) и жидкий кислород (-183°C). Требуют вакуумной теплоизоляции баков.",
-        sci_u2_val: "0g Невесомость",
-        sci_u2_lbl: "Поведение жидкости",
-        sci_u2_desc: "В невесомости жидкость не прижата ко дну, а плавает пузырями и липнет к стенкам бака.",
+        sci_t4_lbl: "Полные баки",
+        sci_t4_desc: "Заправленный до краёв корабль получает запас скорости около 6,9 км/с: хватит на разгон к Марсу, торможение и посадку. Недостающие тонны топлива привезут танкеры.",
+        sci_body_tsiolk: "💡 <strong>Вся правда без иллюзий:</strong> корабль такого размера не может взять при старте и экипаж, и всё топливо на дорогу до Марса. Поэтому сначала его выводят на орбиту почти пустым, а потом танкеры один за другим привозят топливо. Ваша задача — принять его: сначала стыковка, потом перекачка.",
+        sci_u1_val: "−161 °C и −183 °C",
+        sci_u1_lbl: "Топливо холоднее Антарктиды",
+        sci_u1_desc: "Жидкий метан кипит при −161 °C, жидкий кислород — при −183 °C. Для сравнения, в Антарктиде рекорд мороза — около −89 °C. Без теплоизоляции топливо выкипает.",
+        sci_u2_val: "0g",
+        sci_u2_lbl: "В невесомости жидкость не течёт вниз",
+        sci_u2_desc: "Нет «низа» — нет и дна. Жидкость собирается в плавающие шары и растекается по стенкам бака. Как вода на МКС: пролейте — и получите шар.",
         sci_u3_val: "Кавитация ⚠️",
-        sci_u3_lbl: "Смертельная опасность",
-        sci_u3_desc: "Если турбонасос захватит пузырь газа при 30 000 об/мин — крыльчатку разорвет, а двигатель взорвется.",
+        sci_u3_lbl: "Пузырь в насосе — взрыв",
+        sci_u3_desc: "Турбонасос крутится со скоростью 30 000 оборотов в минуту. Если вместо жидкости он схватит пузырь газа, лопасти разорвёт, а двигатель взорвётся.",
         sci_u4_val: "Ullage Burn 🔥",
-        sci_u4_lbl: "Импульс осаждения 🔥",
-        sci_u4_desc: "Включение сопел RCS вперед дает ускорение 0.02g: криоген оседает на дно баков к насосам перекачки.",
-        sci_body_ullage: "💡 <strong>Инженерная процедура:</strong> Прежде чем перекачивать 1200 тонн метана, экипаж обязан выдать импульс осаждения (Ullage Burn). Как только топливо прижмется ко дну, открываются криогенные магистрали высокого давления.",
+        sci_u4_lbl: "Лёгкий толчок возвращает «низ»",
+        sci_u4_desc: "Маленькие двигатели (RCS) слегка разгоняют корабль, и жидкость по инерции прижимается ко дну бака — как кофе в ускоряющейся машине. Нужно всего 0,02 g — в 50 раз слабее земной тяжести.",
+        sci_body_ullage: "💡 <strong>Правило перекачки:</strong> сначала толчок, потом насос. Прежде чем перекачивать сотни тонн метана, экипаж даёт импульс осаждения. Только когда топливо осело на дно, открываются магистрали. Пропустите этот шаг — и насос захлебнётся газом.",
         sci_r1_val: "Starbase",
-        sci_r1_lbl: "Бока-Чика, Техас",
-        sci_r1_desc: "Реальная фабрика Starfactory и стартовые комплексы, строящие флот многоразовых кораблей.",
+        sci_r1_lbl: "Город ракет в Техасе",
+        sci_r1_desc: "Бока-Чика, Техас: здесь SpaceX строит и запускает Starship. Здесь же стоит башня, которая ловит ракеты.",
         sci_r2_val: "Mechazilla",
-        sci_r2_lbl: "Поимка в воздухе",
-        sci_r2_desc: "В октябре 2024 года 71-метровый бустер Super Heavy впервые в истории пойман башней Mechazilla!",
+        sci_r2_lbl: "Ракету поймали руками",
+        sci_r2_desc: "13 октября 2024 года, пятый испытательный полёт: 71-метровый бустер Super Heavy вернулся и был пойман в воздухе «палочками» башни Mechazilla. Раньше это считали фантастикой.",
         sci_r3_val: "NASA Artemis",
-        sci_r3_lbl: "Лунная программа США",
-        sci_r3_desc: "NASA официально выбрало Starship HLS для высадки людей на Луну с обязательной орбитальной дозаправкой.",
+        sci_r3_lbl: "Луна через дозаправку",
+        sci_r3_desc: "NASA выбрало Starship для посадки астронавтов на Луну. Для этого ему тоже нужна дозаправка на орбите — как в нашей игре.",
         sci_r4_val: "Tipping Point",
-        sci_r4_lbl: "Орбитальные тесты",
-        sci_r4_desc: "SpaceX уже успешно провела первый этап испытаний перекачки криогена в космосе по контракту NASA.",
-        sci_body_reality: "💡 <strong>Это не фантастика:</strong> Всё, чем вы управляете в этой миссии — от башни обслуживания до криогенной перекачки — строится и тестируется прямо сейчас инженерами SpaceX и NASA. Наша игра — это строгая проекция реальной космонавтики 2038 года!",
+        sci_r4_lbl: "Заправка в космосе: пока тесты",
+        sci_r4_desc: "По контракту NASA Tipping Point SpaceX отработала перекачку жидкого кислорода между баками внутри корабля. Перекачка между двумя кораблями на орбите — следующий шаг.",
+        sci_body_reality: "💡 <strong>Это не фантастика:</strong> всё, что вы делаете в этой миссии — стыковка, перекачка криогена — это реальные задачи, над которыми сегодня работают инженеры SpaceX и NASA. Мы лишь перенесли их в 2038 год.",
         btn_back_crew: "◀ НАЗАД К ЭКИПАЖУ",
         btn_start_docking: "ПРИНЯТЬ УПРАВЛЕНИЕ И ВЫЙТИ НА СТЫКОВКУ ➔",
 
@@ -1411,59 +1403,59 @@ __ORBIT_SRC__
         sci_tab2: "⛽ 2. TSIOLKOVSKY EQUATION",
         sci_tab3: "❄️ 3. ZERO-G & CRYOGENICS",
         sci_tab4: "🛠️ 4. XXI CENTURY REALITY",
-        sci_f1_val: "5,000 t",
-        sci_f1_lbl: "System Launch Mass",
-        sci_f1_desc: "Super Heavy + Starship. The most colossal and powerful rocket in human history (2x Apollo Saturn V).",
-        sci_f2_val: "33 Raptor 3",
-        sci_f2_lbl: "Booster Thrust",
-        sci_f2_desc: "7,500 metric tons of thrust burning methane (CH4) and liquid oxygen (LOX). 33 Raptor 3 engines.",
+        sci_f1_val: "5,000 tons",
+        sci_f1_lbl: "Liftoff weight: 11 loaded Boeing 747s",
+        sci_f1_desc: "Super Heavy + Starship is the biggest rocket ever built. Twice the thrust of the Moon-landing Saturn V.",
+        sci_f2_val: "7,500 tons of thrust",
+        sci_f2_lbl: "33 Raptor engines",
+        sci_f2_desc: "The rocket weighs 5,000 tons, the engines push up with 7,500. That difference is acceleration: it does not just hover, it surges upward. Fuel: methane and liquid oxygen.",
         sci_f3_val: "Hot-Staging",
-        sci_f3_lbl: "Hot-Staging Separation",
-        sci_f3_desc: "Starship vacuum engines ignite right before stage separation through a perforated titanium interstage ring.",
+        sci_f3_lbl: "Ignition mid-flight",
+        sci_f3_desc: "The ship lights its engines before it separates from the booster and literally pushes itself away with fire. Not a second wasted.",
         sci_f4_val: "28,000 km/h",
-        sci_f4_lbl: "Orbital Velocity (v1)",
-        sci_f4_desc: "Speed of 28,000 km/h (7.8 km/s) enabling the ship to permanently 'fall around the Earth' at 320 km.",
-        sci_body_launch: "💡 <strong>How we arrived here:</strong> To climb to 320 km and beat atmospheric drag, the stack consumed 3,400 tons of booster propellant and 1,100 tons of ship propellant. Starship is in orbit — but its tanks are virtually dry!",
-        sci_formula_desc: "Tsiolkovsky Formula (1903): 'The Tyranny of the Rocket Equation'",
+        sci_f4_lbl: "The speed that keeps you from falling",
+        sci_f4_desc: "To stay in orbit you must fly so fast that the Earth curves away faster than you fall. You fall forever — and forever miss the planet.",
+        sci_body_launch: "💡 <strong>How we got here:</strong> climbing to 320 km is not about height, it is about speed. Height is easy; reaching 7.8 km/s is hard. The rocket burned about 4,500 tons of propellant: 3,400 in the booster and 1,100 in the ship itself. The ship is in orbit, but its tanks are almost empty: 96 tons left out of 1,200. You start the game with an empty tank.",
+        sci_formula_desc: "Tsiolkovsky's rocket equation (1903): to go faster you need not a bit more fuel, but many times more",
         sci_t1_val: "92%",
-        sci_t1_lbl: "Burned at Launch",
-        sci_t1_desc: "A rocket must carry propellant merely to accelerate its own propellant. Mass increases exponentially!",
-        sci_t2_val: "8% (96 t)",
-        sci_t2_lbl: "Orbital Remainder",
-        sci_t2_desc: "Enough only for deorbit maneuvers, completely inadequate for a Mars transfer trajectory.",
-        sci_t3_val: "3,600 m/s",
-        sci_t3_lbl: "TMI Delta-v to Mars",
-        sci_t3_desc: "Required characteristic velocity increment to enter the Hohmann transfer trajectory toward Mars.",
+        sci_t1_lbl: "Of the fuel burned just to reach orbit",
+        sci_t1_desc: "A rocket carries fuel to accelerate… that same fuel. Every extra ton of cargo needs several more tons of fuel. This is the tyranny of the rocket equation.",
+        sci_t2_val: "96 tons",
+        sci_t2_lbl: "Left in the tanks (8%)",
+        sci_t2_desc: "Enough to maneuver in orbit and come back to Earth. Not nearly enough to reach Mars.",
+        sci_t3_val: "3.6 km/s",
+        sci_t3_lbl: "The push to Mars",
+        sci_t3_desc: "To leave Earth orbit for Mars you must add another 3.6 km/s. One powerful engine burn — after it the ship coasts, nearly without thrust, for many months.",
         sci_t4_val: "1,200 tons",
-        sci_t4_lbl: "Target Refueling",
-        sci_t4_desc: "Full propellant tanks in orbit yield 6.9 km/s delta-v — ensuring Earth departure, cruise, and Mars landing!",
-        sci_body_tsiolk: "💡 <strong>Hard reality without illusions:</strong> No rocket can launch from Earth directly to Mars with a 100-ton habitat. The only physically viable path in our solar system is launching empty and refueling in LEO via orbital tankers. Without orbital refueling, Mars is impossible!",
-        sci_u1_val: "-161°C / -183°C",
-        sci_u1_lbl: "Cryogenic Propellant",
-        sci_u1_desc: "Liquid methane (-161°C) and liquid oxygen (-183°C). Requiring vacuum-jacketed cryogenic tanks.",
-        sci_u2_val: "0g Microgravity",
-        sci_u2_lbl: "Zero-G Fluid Dynamics",
-        sci_u2_desc: "In microgravity, liquids do not stay at the bottom; surface tension causes them to float in bubbles and coat tank walls.",
+        sci_t4_lbl: "Full tanks",
+        sci_t4_desc: "A ship filled to the brim gets about 6.9 km/s of delta-v: enough for the push to Mars, braking and landing. The missing tons will be delivered by tanker ships.",
+        sci_body_tsiolk: "💡 <strong>The truth, no illusions:</strong> a ship this size cannot carry the crew and all the fuel for Mars at liftoff. So it goes to orbit almost empty, and tankers then deliver the fuel one by one. Your job is to receive it: docking first, then the transfer.",
+        sci_u1_val: "−161 °C and −183 °C",
+        sci_u1_lbl: "Fuel colder than Antarctica",
+        sci_u1_desc: "Liquid methane boils at −161 °C, liquid oxygen at −183 °C. For comparison, the coldest ever in Antarctica is about −89 °C. Without insulation the fuel boils away.",
+        sci_u2_val: "0g",
+        sci_u2_lbl: "In zero-g liquid does not flow down",
+        sci_u2_desc: "No «down» means no bottom. The liquid gathers into floating blobs and clings to the tank walls. Like water on the ISS: spill it and you get a ball.",
         sci_u3_val: "Cavitation ⚠️",
-        sci_u3_lbl: "Turbopump Cavitation ⚠️",
-        sci_u3_desc: "If a turbopump spinning at 30,000 RPM ingests a gas bubble, catastrophic cavitation will rupture the engine.",
+        sci_u3_lbl: "A bubble in the pump means an explosion",
+        sci_u3_desc: "The turbopump spins at 30,000 RPM. If it swallows a gas bubble instead of liquid, the blades shatter and the engine explodes.",
         sci_u4_val: "Ullage Burn 🔥",
-        sci_u4_lbl: "Ullage Burn Maneuver 🔥",
-        sci_u4_desc: "Firing forward RCS thrusters produces 0.02g acceleration, forcing 1,200t of cryogenic propellant to the sumps.",
-        sci_body_ullage: "💡 <strong>Engineering Procedure:</strong> Prior to cryogenic transfer, the crew executes an Ullage Burn. Only once propellant settles at the tank sumps are the high-pressure cryogenic transfer umbilicals opened.",
+        sci_u4_lbl: "A gentle push brings «down» back",
+        sci_u4_desc: "Small thrusters (RCS) nudge the ship forward and the liquid settles against the tank bottom by inertia — like coffee in an accelerating car. It takes only 0.02 g, 50 times weaker than Earth gravity.",
+        sci_body_ullage: "💡 <strong>The transfer rule:</strong> push first, pump second. Before moving hundreds of tons of methane, the crew fires an ullage burn. Only when the fuel has settled do the transfer lines open. Skip it and the pump chokes on gas.",
         sci_r1_val: "Starbase",
-        sci_r1_lbl: "Boca Chica, Texas",
-        sci_r1_desc: "The real Starfactory facility and launch complexes engineered to build an interplanetary armada.",
+        sci_r1_lbl: "A rocket town in Texas",
+        sci_r1_desc: "Boca Chica, Texas: SpaceX builds and launches Starship here. This is also home to the tower that catches rockets.",
         sci_r2_val: "Mechazilla",
-        sci_r2_lbl: "Mid-Air Catch",
-        sci_r2_desc: "In October 2024 (IFT-5), the 71-meter Super Heavy booster returned from space and was caught mid-air by Mechazilla Chopsticks!",
+        sci_r2_lbl: "A rocket caught by giant arms",
+        sci_r2_desc: "On October 13, 2024, flight 5: the 71-meter Super Heavy booster returned and was caught mid-air by the «chopsticks» of the Mechazilla tower. This used to be science fiction.",
         sci_r3_val: "NASA Artemis",
-        sci_r3_lbl: "NASA Artemis Program",
-        sci_r3_desc: "NASA officially selected Starship HLS to land astronauts on the Moon, mandating orbital propellant refueling.",
+        sci_r3_lbl: "The Moon needs refueling too",
+        sci_r3_desc: "NASA chose Starship to land astronauts on the Moon. It also needs orbital refueling to do it — just like in our game.",
         sci_r4_val: "Tipping Point",
-        sci_r4_lbl: "Orbital Tests",
-        sci_r4_desc: "SpaceX successfully demonstrated cryogenic propellant transfer inside Starship under NASA's Tipping Point contract.",
-        sci_body_reality: "💡 <strong>This is not science fiction:</strong> Everything you operate in this mission — from Mechazilla to cryogenic transfer — is being engineered and flight-tested today by SpaceX and NASA. Our game is a rigorous simulation of real 2038 spaceflight!",
+        sci_r4_lbl: "Refueling in space: still in testing",
+        sci_r4_desc: "Under the NASA Tipping Point contract SpaceX demonstrated liquid oxygen transfer between tanks inside a ship. Transfer between two ships in orbit is the next step.",
+        sci_body_reality: "💡 <strong>This is not science fiction:</strong> everything you do in this mission — docking, cryogenic transfer — are real problems that SpaceX and NASA engineers are working on today. We just moved them to the year 2038.",
         btn_back_crew: "◀ BACK TO CREW",
         btn_start_docking: "TAKE CONTROLS & INITIATE DOCKING ➔",
 
