@@ -1056,7 +1056,7 @@ HTML_CONTENT = r'''<!DOCTYPE html>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-t4-val">1 200 тонн</div>
             <div class="sci-fact-label" id="i18n-sci-t4-lbl">Глава 4. Полные баки</div>
-            <div class="sci-fact-desc" id="i18n-sci-t4-desc">Если заправить корабль до краёв, его запас скорости вырастет до 6,9 км/с. Этого хватит на всё сразу: разгон к Марсу, торможение у Марса, посадку и небольшой запас на непредвиденное. Недостающие 1 100 тонн топлива привезут танкеры — специальные корабли-заправщики.</div>
+            <div class="sci-fact-desc" id="i18n-sci-t4-desc">Если заправить корабль до краёв, его запас скорости вырастет до 6,9 км/с. Этого хватит на разгон к Марсу, торможение, посадку и небольшой запас на непредвиденные ситуации. Недостающие 1 100 тонн топлива привезут танкеры — специальные корабли-заправщики.</div>
           </div>
         </div>
         <div class="sci-body-text" id="i18n-sci-body-tsiolk">💡 <strong>Вся правда без иллюзий:</strong> корабль такого размера не может взять при старте и экипаж, и всё топливо на дорогу до Марса: слишком тяжёлым он получится, и ракета его не поднимет. Поэтому корабль выводят на орбиту почти пустым, а потом танкеры один за другим привозят топливо. Ваша задача — принять его: сначала стыковка, потом перекачка.</div>
@@ -1315,7 +1315,7 @@ __ORBIT_SRC__
         sci_t3_desc: "Чтобы покинуть орбиту Земли и взять курс на Марс, нужно ещё раз сильно разогнаться: добавить к скорости 3,6 км/с. Двигатели включаются один раз, а потом корабль летит по инерции, как брошенный камень, много месяцев. По формуле для такого толчка нужно около 370 тонн топлива — почти в четыре раза больше, чем осталось в баках.",
         sci_t4_val: "1 200 тонн",
         sci_t4_lbl: "Глава 4. Полные баки",
-        sci_t4_desc: "Если заправить корабль до краёв, его запас скорости вырастет до 6,9 км/с. Этого хватит на всё сразу: разгон к Марсу, торможение у Марса, посадку и небольшой запас на непредвиденное. Недостающие 1 100 тонн топлива привезут танкеры — специальные корабли-заправщики.",
+        sci_t4_desc: "Если заправить корабль до краёв, его запас скорости вырастет до 6,9 км/с. Этого хватит на разгон к Марсу, торможение, посадку и небольшой запас на непредвиденные ситуации. Недостающие 1 100 тонн топлива привезут танкеры — специальные корабли-заправщики.",
         sci_body_tsiolk: "💡 <strong>Вся правда без иллюзий:</strong> корабль такого размера не может взять при старте и экипаж, и всё топливо на дорогу до Марса: слишком тяжёлым он получится, и ракета его не поднимет. Поэтому корабль выводят на орбиту почти пустым, а потом танкеры один за другим привозят топливо. Ваша задача — принять его: сначала стыковка, потом перекачка.",
         sci_u1_val: "−161 °C и −183 °C",
         sci_u1_lbl: "Глава 1. Топливо холоднее Антарктиды",
@@ -1448,7 +1448,7 @@ __ORBIT_SRC__
         sci_t3_desc: "To leave Earth orbit and head for Mars you must accelerate hard once more: add 3.6 km/s of speed. The engines fire once, then the ship coasts like a thrown stone for many months. By the formula such a push needs about 370 tons of fuel — nearly four times more than what is left in the tanks.",
         sci_t4_val: "1,200 tons",
         sci_t4_lbl: "Chapter 4. Full tanks",
-        sci_t4_desc: "If the ship is filled to the brim, its delta-v grows to 6.9 km/s. That is enough for everything: the push to Mars, braking at Mars, landing and a small reserve. The missing 1,100 tons of fuel will be delivered by tankers — special refueling ships.",
+        sci_t4_desc: "If the ship is filled to the brim, its delta-v grows to 6.9 km/s. That is enough for the push to Mars, braking, landing and a small reserve for unforeseen situations. The missing 1,100 tons of fuel will be delivered by tankers — special refueling ships.",
         sci_body_tsiolk: "💡 <strong>The truth, no illusions:</strong> a ship this size cannot take both the crew and all the fuel for Mars at liftoff: it would be too heavy for the rocket to lift. So the ship goes to orbit almost empty, and tankers then deliver the fuel one by one. Your job is to receive it: docking first, then the transfer.",
         sci_u1_val: "−161 °C and −183 °C",
         sci_u1_lbl: "Chapter 1. Fuel colder than Antarctica",
