@@ -754,6 +754,30 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     #cine-start .cine-play { font-size: 20px; padding: 14px 34px; border: 2px solid #00f0ff; border-radius: 40px; color: #fff; background: rgba(0,240,255,0.1); }
     #cine-skip { position: absolute; right: 24px; bottom: 24px; z-index: 2; padding: 10px 22px; background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.5); border-radius: 24px; cursor: pointer; font-size: 15px; display: none; }
     #cine-skip:hover { background: rgba(0,240,255,0.25); }
+    /* ===== CREW CONSTRUCTOR ===== */
+    .cc-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; }
+    @media (max-width: 800px) { .cc-wrap { grid-template-columns: 1fr; } }
+    .cc-form, .cc-roster { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,210,255,0.2); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #cbd5e1; }
+    .cc-title { font-weight: 800; color: #00f0ff; letter-spacing: 1px; }
+    .cc-avatars { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .cc-av { width: 46px; height: 46px; border-radius: 50%; border: 2px solid transparent; background: rgba(255,255,255,0.07); font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0; }
+    .cc-av.sel { border-color: #00f0ff; box-shadow: 0 0 10px rgba(0,240,255,0.6); }
+    .cc-av img { width: 100%; height: 100%; object-fit: cover; }
+    .cc-upload span { cursor: pointer; color: #00f0ff; text-decoration: underline; font-size: 12px; }
+    .cc-input { background: rgba(255,255,255,0.07); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 9px; font-size: 14px; }
+    .cc-input option { background: #0b1220; }
+    .cc-pts strong { color: #00f0ff; font-size: 18px; }
+    .cc-skill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 6px 10px; border-radius: 6px; }
+    .cc-skill .nm { flex: 1; }
+    .cc-skill button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #00f0ff; background: transparent; color: #00f0ff; font-size: 18px; cursor: pointer; line-height: 1; }
+    .cc-skill button:hover { background: rgba(0,240,255,0.2); }
+    .cc-skill .val { width: 22px; text-align: center; font-weight: 800; color: #fff; }
+    .cc-perks { font-size: 12px; color: #9fb3c8; min-height: 18px; }
+    .cc-card { display: flex; gap: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; align-items: center; margin-bottom: 8px; }
+    .cc-card .cc-av { flex: none; cursor: default; width: 52px; height: 52px; }
+    .cc-card .info { flex: 1; font-size: 12px; }
+    .cc-card .info b { font-size: 14px; color: #fff; }
+    .cc-card .del { background: transparent; border: 1px solid #ff4d6d; color: #ff4d6d; border-radius: 6px; cursor: pointer; padding: 4px 8px; }
   </style>
 </head>
 <body>
@@ -926,18 +950,29 @@ HTML_CONTENT = r'''<!DOCTYPE html>
       </div>
 
       <!-- Custom Crew Builder (Toggleable) -->
-      <div id="custom-crew-box" style="display: none; font-size: 13px; color: #cbd5e1; padding: 18px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(0,210,255,0.2);">
-        <div id="i18n-custom-desc" style="font-weight: 700; color: #00f0ff;">Распределите очки квалификации экипажа (доступно: 12 очков):</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 14px;">
-          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🚀 <span id="i18n-skill-pilot">Пилотирование</span>: <strong style="color: #00f0ff;">+4</strong></div>
-          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🔧 <span id="i18n-skill-eng">Инженерия СЖО/ДУ</span>: <strong style="color: #00f0ff;">+4</strong></div>
-          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🧬 <span id="i18n-skill-med">Биомедицина</span>: <strong style="color: #00f0ff;">+2</strong></div>
-          <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px;">🧠 <span id="i18n-skill-psy">Психоустойчивость</span>: <strong style="color: #00f0ff;">+2</strong></div>
+      <div id="custom-crew-box" style="display: none;">
+        <div class="cc-wrap">
+          <div class="cc-form">
+            <div class="cc-title" id="cc-t-new"></div>
+            <div class="cc-avatars" id="cc-avatars"></div>
+            <label class="cc-upload"><input type="file" accept="image/*" id="cc-photo" onchange="ccPhoto(this)" style="display:none"><span id="cc-t-upload"></span></label>
+            <input class="cc-input" id="cc-name" maxlength="24">
+            <select class="cc-input" id="cc-role"></select>
+            <select class="cc-input" id="cc-agency"></select>
+            <div class="cc-pts"><span id="cc-t-pts"></span> <strong id="cc-pts-left">12</strong></div>
+            <div id="cc-skills"></div>
+            <div class="cc-perks" id="cc-perks"></div>
+            <button class="btn-glow" style="width:100%" onclick="ccAdd()" id="cc-add-btn"></button>
+          </div>
+          <div class="cc-roster">
+            <div class="cc-title"><span id="cc-t-roster"></span> <span id="cc-count">0/4</span></div>
+            <div id="cc-list"></div>
+          </div>
         </div>
       </div>
 
       <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-        <button class="btn-glow" onclick="showScienceScreen()" id="i18n-btn-confirm-crew">
+        <button class="btn-glow" onclick="confirmCrew()" id="i18n-btn-confirm-crew">
           УТВЕРДИТЬ ЭКИПАЖ И ПЕРЕЙТИ К БРИФИНГУ ➔
         </button>
       </div>
@@ -1468,6 +1503,7 @@ __ORBIT_SRC__
     }
 
     function applyLanguage() {
+      if (typeof ccApplyLang === 'function') ccApplyLang();
       const d = DICT[currentLang];
       document.getElementById('sci-nav-btn').innerText = d.sci_nav_btn;
       document.getElementById('i18n-intro-year').innerText = d.intro_year;
@@ -1511,11 +1547,6 @@ __ORBIT_SRC__
       document.getElementById('i18n-crew-med-spec').innerText = d.crew_med_spec;
 
       // Custom crew skills
-      document.getElementById('i18n-custom-desc').innerText = d.custom_desc;
-      document.getElementById('i18n-skill-pilot').innerText = d.skill_pilot;
-      document.getElementById('i18n-skill-eng').innerText = d.skill_eng;
-      document.getElementById('i18n-skill-med').innerText = d.skill_med;
-      document.getElementById('i18n-skill-psy').innerText = d.skill_psy;
 
       document.getElementById('i18n-btn-confirm-crew').innerText = d.btn_confirm_crew;
       
@@ -1763,9 +1794,142 @@ __ORBIT_SRC__
       showScreen('screen-science');
     }
 
+    /* ===== CREW CONSTRUCTOR ===== */
+    const CC_AVATARS = ['👩‍🚀', '👨‍🚀', '🧑‍🚀', '👩🏾‍🚀', '👨🏿‍🚀', '👩🏻‍🚀', '👨🏽‍🚀', '🤖'];
+    const CC_SKILLS = ['pilot', 'eng', 'med', 'psy'];
+    const CC_ICONS = { pilot: '🚀', eng: '🔧', med: '🧬', psy: '🧠' };
+    const CC_MAX_POINTS = 12, CC_MAX_SKILL = 8, CC_MAX_CREW = 4;
+    const CC_T = {
+      ru: {
+        newm: 'НОВЫЙ ЧЛЕН ЭКИПАЖА', upload: '📷 или загрузить своё фото', name: 'Имя и фамилия', pts: 'Осталось очков:',
+        roster: 'ВАШ ЭКИПАЖ', add: '＋ ДОБАВИТЬ В ЭКИПАЖ', del: 'Убрать',
+        pilot: 'Пилотирование', eng: 'Инженерия СЖО/ДУ', med: 'Биомедицина', psy: 'Психоустойчивость',
+        perk_pilot: 'точность сближения', perk_eng: 'меньше износ агрегатов', perk_med: 'био-буфер', perk_psy: 'стойкость к стрессу',
+        roles: { cdr: 'Командир', plt: 'Пилот', eng: 'Бортинженер', med: 'Врач', sci: 'Учёный' },
+        agencies: { nasa: 'NASA', spacex: 'SpaceX', roscosmos: 'Роскосмос', esa: 'ESA', cnsa: 'CNSA', jaxa: 'JAXA', isro: 'ISRO' },
+        need_name: 'Введите имя', full: 'Экипаж полный (максимум 4)', need_pts: 'Распределите все 12 очков', empty: 'Добавьте хотя бы одного члена экипажа',
+        empty_list: 'Пока никого. Создайте первого!', ok: 'Экипаж утверждён'
+      },
+      en: {
+        newm: 'NEW CREW MEMBER', upload: '📷 or upload your own photo', name: 'Full name', pts: 'Points left:',
+        roster: 'YOUR CREW', add: '＋ ADD TO CREW', del: 'Remove',
+        pilot: 'Piloting', eng: 'Life-support / Propulsion eng.', med: 'Biomedicine', psy: 'Psychological resilience',
+        perk_pilot: 'docking precision', perk_eng: 'less hardware wear', perk_med: 'bio-buffer', perk_psy: 'stress resistance',
+        roles: { cdr: 'Commander', plt: 'Pilot', eng: 'Flight Engineer', med: 'Medical Officer', sci: 'Scientist' },
+        agencies: { nasa: 'NASA', spacex: 'SpaceX', roscosmos: 'Roscosmos', esa: 'ESA', cnsa: 'CNSA', jaxa: 'JAXA', isro: 'ISRO' },
+        need_name: 'Enter a name', full: 'Crew is full (max 4)', need_pts: 'Spend all 12 points', empty: 'Add at least one crew member', 
+        empty_list: 'Nobody yet. Create your first!', ok: 'Crew approved'
+      }
+    };
+    let ccCrew = [];
+    try { ccCrew = JSON.parse(localStorage.getItem('ares1_custom_crew') || '[]'); } catch (e) { ccCrew = []; }
+    let ccDraft = { avatar: CC_AVATARS[0], photo: null, skills: { pilot: 0, eng: 0, med: 0, psy: 0 } };
+    let ccTabActive = false;
+
+    function ccLeft() { return CC_MAX_POINTS - CC_SKILLS.reduce((a, k) => a + ccDraft.skills[k], 0); }
+
+    function ccApplyLang() {
+      const t = CC_T[currentLang];
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+      set('cc-t-new', t.newm); set('cc-t-upload', t.upload); set('cc-t-pts', t.pts);
+      set('cc-t-roster', t.roster); set('cc-add-btn', t.add);
+      document.getElementById('cc-name').placeholder = t.name;
+      const roleSel = document.getElementById('cc-role'), agSel = document.getElementById('cc-agency');
+      const rv = roleSel.value, av = agSel.value;
+      roleSel.innerHTML = Object.keys(t.roles).map(k => `<option value="${k}">${t.roles[k]}</option>`).join('');
+      agSel.innerHTML = Object.keys(t.agencies).map(k => `<option value="${k}">${t.agencies[k]}</option>`).join('');
+      if (rv) roleSel.value = rv; if (av) agSel.value = av;
+      ccRenderAvatars(); ccRenderSkills(); ccRenderList();
+    }
+
+    function ccAvatarHTML(c) { return c.photo ? `<img src="${c.photo}">` : c.avatar; }
+
+    function ccRenderAvatars() {
+      const box = document.getElementById('cc-avatars');
+      box.innerHTML = CC_AVATARS.map(a => `<button class="cc-av ${(!ccDraft.photo && ccDraft.avatar === a) ? 'sel' : ''}" onclick="ccPickAvatar('${a}')">${a}</button>`).join('') +
+        (ccDraft.photo ? `<button class="cc-av sel"><img src="${ccDraft.photo}"></button>` : '');
+    }
+    function ccPickAvatar(a) { ccDraft.avatar = a; ccDraft.photo = null; ccRenderAvatars(); }
+
+    function ccPhoto(input) {
+      const f = input.files && input.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          const S = 160, cv = document.createElement('canvas');
+          cv.width = cv.height = S;
+          const m = Math.min(img.width, img.height);
+          cv.getContext('2d').drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, S, S);
+          ccDraft.photo = cv.toDataURL('image/jpeg', 0.8);
+          ccRenderAvatars();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(f);
+      input.value = '';
+    }
+
+    function ccRenderSkills() {
+      const t = CC_T[currentLang];
+      document.getElementById('cc-skills').innerHTML = CC_SKILLS.map(k =>
+        `<div class="cc-skill"><span>${CC_ICONS[k]}</span><span class="nm">${t[k]}</span>
+          <button onclick="ccAdj('${k}',-1)">−</button><span class="val">${ccDraft.skills[k]}</span><button onclick="ccAdj('${k}',1)">+</button></div>`).join('');
+      document.getElementById('cc-pts-left').innerText = ccLeft();
+      document.getElementById('cc-perks').innerText = CC_SKILLS.filter(k => ccDraft.skills[k] > 0)
+        .map(k => `${CC_ICONS[k]} +${ccDraft.skills[k] * 3}% ${t['perk_' + k]}`).join('  ·  ');
+    }
+    function ccAdj(k, d) {
+      const v = ccDraft.skills[k] + d;
+      if (v < 0 || v > CC_MAX_SKILL || (d > 0 && ccLeft() <= 0)) return;
+      ccDraft.skills[k] = v; ccRenderSkills();
+    }
+
+    function ccAdd() {
+      const t = CC_T[currentLang];
+      const name = document.getElementById('cc-name').value.trim();
+      if (!name) { showToast(t.need_name); return; }
+      if (ccCrew.length >= CC_MAX_CREW) { showToast(t.full); return; }
+      if (ccLeft() > 0) { showToast(t.need_pts); return; }
+      ccCrew.push({ name, role: document.getElementById('cc-role').value, agency: document.getElementById('cc-agency').value,
+        avatar: ccDraft.avatar, photo: ccDraft.photo, skills: Object.assign({}, ccDraft.skills) });
+      ccSave();
+      document.getElementById('cc-name').value = '';
+      ccDraft.skills = { pilot: 0, eng: 0, med: 0, psy: 0 };
+      ccRenderSkills(); ccRenderList();
+    }
+    function ccDel(i) { ccCrew.splice(i, 1); ccSave(); ccRenderList(); }
+    function ccSave() { try { localStorage.setItem('ares1_custom_crew', JSON.stringify(ccCrew)); } catch (e) { } }
+
+    function ccRenderList() {
+      const t = CC_T[currentLang];
+      document.getElementById('cc-count').innerText = ccCrew.length + '/' + CC_MAX_CREW;
+      document.getElementById('cc-list').innerHTML = ccCrew.length ? ccCrew.map((c, i) =>
+        `<div class="cc-card"><div class="cc-av">${ccAvatarHTML(c)}</div>
+          <div class="info"><b>${c.name.replace(/</g, '&lt;')}</b><br>${t.roles[c.role]} · ${t.agencies[c.agency]}<br>
+          ${CC_SKILLS.map(k => `${CC_ICONS[k]}${c.skills[k]}`).join(' ')}</div>
+          <button class="del" onclick="ccDel(${i})">✕</button></div>`).join('')
+        : `<div style="opacity:.6">${t.empty_list}</div>`;
+    }
+
+    function confirmCrew() {
+      const t = CC_T[currentLang];
+      if (ccTabActive) {
+        if (!ccCrew.length) { showToast(t.empty); return; }
+        window.activeCrew = { type: 'custom', members: ccCrew };
+      } else {
+        window.activeCrew = { type: 'canon' };
+      }
+      showScienceScreen();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => { ccApplyLang(); });
+
     function switchCrewTab(tab, btn) {
       document.querySelectorAll('.crew-tabs .tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      ccTabActive = tab !== 'canon';
       if (tab === 'canon') {
         document.getElementById('canon-crew-grid').style.display = 'grid';
         document.getElementById('custom-crew-box').style.display = 'none';
