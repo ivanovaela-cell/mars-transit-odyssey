@@ -7,6 +7,7 @@ import sys
 sys.path.append(r'D:\mars-transit-odyssey')
 from textures_b64 import EARTH_B64, CLOUDS_B64, SPEC_B64, MARS_B64, SUN_B64, MOON_B64
 from crew_b64 import VANCE_B64, ROMANOVA_B64, CHEN_B64, REID_B64
+from audio_b64 import MAIN_THEME_B64
 
 with open(r'D:\mars-transit-odyssey\libs\three.min.js', 'r', encoding='utf-8') as f:
     three_src = f.read()
@@ -1304,7 +1305,9 @@ __ORBIT_SRC__
         toast_ullage: "Импульс осаждения топлива (Ullage Burn) завершен! Топливо на дне баков.",
         toast_refuel_done: "Баки полностью заправлены! 1200 тонн криогена загружено.",
         toast_tmi: "Рапторы включены! Выход на траекторию к Марсу!",
-        toast_bounce: "⚠️ Слишком большая скорость сближения! Отскок!"
+        toast_bounce: "⚠️ Слишком большая скорость сближения! Отскок!",
+        toast_music_play: "🎵 Саундтрек: «Арес-1: Марсианский транзит»",
+        toast_music_pause: "🔇 Саундтрек приостановлен"
       },
       en: {
         sci_nav_btn: "💡 MISSION SCIENCE",
@@ -1430,7 +1433,9 @@ __ORBIT_SRC__
         toast_ullage: "Ullage burn complete! Propellant settled at tank sumps.",
         toast_refuel_done: "Tanks full! 1,200 tons of liquid methane & LOX transferred.",
         toast_tmi: "Raptors ignited! On trajectory to Mars!",
-        toast_bounce: "⚠️ Excessive closing speed! Rebound!"
+        toast_bounce: "⚠️ Excessive closing speed! Rebound!",
+        toast_music_play: "🎵 Soundtrack: 'Ares-1: Martian Transit'",
+        toast_music_pause: "🔇 Soundtrack paused"
       }
     };
 
@@ -1628,10 +1633,64 @@ __ORBIT_SRC__
       } catch (e) {}
     }
 
+    let bgMusic = null;
+    let musicStarted = false;
+    const MAIN_THEME_SRC = '__MAIN_THEME_B64__';
+
+    function initBackgroundMusic() {
+      if (!bgMusic) {
+        bgMusic = new Audio(MAIN_THEME_SRC);
+        bgMusic.loop = true;
+        bgMusic.volume = 0.0;
+      }
+    }
+
+    function startBackgroundMusic() {
+      if (!audioEnabled) return;
+      initBackgroundMusic();
+      if (!musicStarted) {
+        bgMusic.play().then(() => {
+          musicStarted = true;
+          let vol = 0.0;
+          const fadeInterval = setInterval(() => {
+            vol += 0.04;
+            if (vol >= 0.40) {
+              vol = 0.40;
+              clearInterval(fadeInterval);
+            }
+            if (bgMusic) bgMusic.volume = vol;
+          }, 100);
+          showToast(DICT[currentLang].toast_music_play);
+        }).catch(e => {
+          console.log('Audio autoplay prevented, waiting for user click');
+        });
+      }
+    }
+
     function toggleAudio() {
       audioEnabled = !audioEnabled;
       document.getElementById('audio-btn').innerText = audioEnabled ? '🔊' : '🔇';
+      initBackgroundMusic();
+      if (bgMusic) {
+        if (audioEnabled) {
+          bgMusic.play().then(() => {
+            bgMusic.volume = 0.40;
+            musicStarted = true;
+          }).catch(e => {});
+          showToast(DICT[currentLang].toast_music_play);
+        } else {
+          bgMusic.pause();
+          showToast(DICT[currentLang].toast_music_pause);
+        }
+      }
     }
+
+    window.addEventListener('click', function onFirstClick() {
+      if (!musicStarted && audioEnabled) {
+        startBackgroundMusic();
+      }
+      window.removeEventListener('click', onFirstClick);
+    });
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -1653,10 +1712,12 @@ __ORBIT_SRC__
     }
 
     function showCrewScreen() {
+      startBackgroundMusic();
       showScreen('screen-crew');
     }
 
     function showScienceScreen() {
+      startBackgroundMusic();
       showScreen('screen-science');
     }
 
@@ -2042,6 +2103,7 @@ final_html = final_html.replace('__VANCE_B64__', VANCE_B64)
 final_html = final_html.replace('__ROMANOVA_B64__', ROMANOVA_B64)
 final_html = final_html.replace('__CHEN_B64__', CHEN_B64)
 final_html = final_html.replace('__REID_B64__', REID_B64)
+final_html = final_html.replace('__MAIN_THEME_B64__', MAIN_THEME_B64)
 
 with open(r'D:\mars-transit-odyssey\index.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
