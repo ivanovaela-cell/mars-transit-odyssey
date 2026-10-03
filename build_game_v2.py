@@ -778,6 +778,11 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     .cc-card .info { flex: 1; font-size: 12px; }
     .cc-card .info b { font-size: 14px; color: #fff; }
     .cc-card .del { background: transparent; border: 1px solid #ff4d6d; color: #ff4d6d; border-radius: 6px; cursor: pointer; padding: 4px 8px; }
+    #tab-launch .science-card-grid { grid-template-columns: 1fr; }
+    #tab-launch .sci-fact-desc { font-size: 14px; line-height: 1.65; color: #b6c4d6; }
+    #tab-launch .sci-fact-label { font-size: 13px; color: #00e699; }
+    #tab-launch .sci-fact-val { font-size: 24px; }
+    #tab-launch .sci-body-text, .science-content-box .sci-body-text { font-size: 14px; line-height: 1.65; }
   </style>
 </head>
 <body>
@@ -998,29 +1003,30 @@ HTML_CONTENT = r'''<!DOCTYPE html>
 
       <!-- Tab 1: Launch & Hot-Staging -->
       <div class="science-content-box" id="tab-launch">
+        <div class="sci-body-text" id="i18n-sci-intro-launch">🎓 <strong>Добро пожаловать на экскурсию!</strong> Представьте: нужно поднять в небо многоэтажный дом и разогнать его до 28 000 километров в час. Именно так быстро надо лететь, чтобы остаться на орбите — то есть кружить вокруг Земли и не падать. Это делает самая большая ракета в истории. Она состоит из двух частей. Нижняя — ускоритель Super Heavy («Супер Хеви», по-русски «Сверхтяжёлый»): он даёт основной разгон. Верхняя — космический корабль Starship («Старшип», «Звёздный корабль»): в нём летит экипаж, и именно он дойдёт до Марса. Вместе их называют системой Starship. Давайте разберём её по главам.</div>
         <div class="science-card-grid">
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f1-val">5 000 тонн</div>
-            <div class="sci-fact-label" id="i18n-sci-f1-lbl">Вес на старте — как 11 Боингов-747</div>
-            <div class="sci-fact-desc" id="i18n-sci-f1-desc">Super Heavy + Starship — самая большая ракета в истории. Тяга вдвое больше, чем у лунной Saturn V.</div>
+            <div class="sci-fact-label" id="i18n-sci-f1-lbl">Глава 1. Огромный вес</div>
+            <div class="sci-fact-desc" id="i18n-sci-f1-desc">Полностью заправленная ракета весит 5 000 тонн. Это как 11 больших пассажирских самолётов Боинг-747, сложенных вместе. Почти всё это — топливо: ракета на 90% состоит из него. Для сравнения: Saturn V («Сатурн-5»), ракета, которая в 1969 году доставила людей на Луну, весила около 3 000 тонн — почти вдвое меньше.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f2-val">7 500 тонн тяги</div>
-            <div class="sci-fact-label" id="i18n-sci-f2-lbl">33 двигателя Raptor</div>
-            <div class="sci-fact-desc" id="i18n-sci-f2-desc">Ракета весит 5 000 тонн, а двигатели толкают вверх с силой 7 500. Эта разница и есть ускорение: ракета не просто висит, а рвётся вверх. Топливо — метан и жидкий кислород.</div>
+            <div class="sci-fact-label" id="i18n-sci-f2-lbl">Глава 2. Сила, которая поднимает</div>
+            <div class="sci-fact-desc" id="i18n-sci-f2-desc">Тяга — это сила, с которой двигатели толкают ракету вверх. Её измеряют в тоннах силы: тяга 7 500 тонн значит, что двигатели смогли бы удержать на весу груз в 7 500 тонн. Двигателей 33, они называются Raptor («Раптор», хищная птица) и работают на метане и жидком кислороде. А теперь сравните: ракета весит 5 000 тонн, а толкают её вверх с силой 7 500. Тяга больше веса на 2 500 тонн — именно этот излишек и разгоняет ракету. Будь тяга меньше веса, ракета просто осталась бы на земле.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f3-val">Hot-Staging</div>
-            <div class="sci-fact-label" id="i18n-sci-f3-lbl">Зажигание «на лету»</div>
-            <div class="sci-fact-desc" id="i18n-sci-f3-desc">Корабль включает свои двигатели ещё до отделения от бустера и буквально отталкивается от него огнём. Ни секунды потерь.</div>
+            <div class="sci-fact-label" id="i18n-sci-f3-lbl">Глава 3. Горячее разделение</div>
+            <div class="sci-fact-desc" id="i18n-sci-f3-desc">Примерно через две с половиной минуты полёта ускоритель отработал своё и должен отцепиться. Обычно двигатели верхней части включают уже после отделения. Здесь иначе: корабль зажигает свои двигатели ещё пока они скреплены и огнём отталкивается от ускорителя. Это и называют «горячим разделением» (hot-staging). Выигрыш в том, что ни секунды не теряется без тяги, и ракета продолжает разгоняться.</div>
           </div>
           <div class="sci-fact-card">
             <div class="sci-fact-val" id="i18n-sci-f4-val">28 000 км/ч</div>
-            <div class="sci-fact-label" id="i18n-sci-f4-lbl">Скорость, чтобы не упасть</div>
-            <div class="sci-fact-desc" id="i18n-sci-f4-desc">Чтобы остаться на орбите, нужно лететь так быстро, что Земля уходит из-под корабля быстрее, чем он падает. Он падает вечно — и вечно промахивается мимо планеты.</div>
+            <div class="sci-fact-label" id="i18n-sci-f4-lbl">Глава 4. Скорость, чтобы не упасть</div>
+            <div class="sci-fact-desc" id="i18n-sci-f4-desc">Чтобы оказаться на орбите, мало подняться вверх на 320 километров. Нужно разогнаться до 7,8 километра в секунду — это и есть 28 000 км/ч. Почему так? Любое тело падает на Землю. Но если лететь вбок достаточно быстро, Земля, круглая как шар, уходит из-под корабля так же быстро, как он падает. Корабль всё время падает — и всё время промахивается мимо планеты. Это и есть орбита, а такая скорость называется первой космической.</div>
           </div>
         </div>
-        <div class="sci-body-text" id="i18n-sci-body-launch">💡 <strong>Как мы здесь оказались:</strong> подъём на 320 км — это не про высоту, а про скорость. Высоту набрать легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в бустере и 1 100 в самом корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Вы начинаете игру с пустым баком.</div>
+        <div class="sci-body-text" id="i18n-sci-body-launch">💡 <strong>Как мы здесь оказались:</strong> подъём на орбиту — это не про высоту, а про скорость. Подняться на 320 км легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в ускорителе и 1 100 в корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Именно с этого начинается ваша миссия.</div>
       </div>
 
       <!-- Tab 2: Tsiolkovsky Equation -->
@@ -1276,18 +1282,19 @@ __ORBIT_SRC__
         sci_tab3: "❄️ 3. КРИОГЕН И НЕВЕСОМОСТЬ (0g)",
         sci_tab4: "🛠️ 4. РЕАЛЬНОСТЬ XXI ВЕКА",
         sci_f1_val: "5 000 тонн",
-        sci_f1_lbl: "Вес на старте — как 11 Боингов-747",
-        sci_f1_desc: "Super Heavy + Starship — самая большая ракета в истории. Тяга вдвое больше, чем у лунной Saturn V.",
+        sci_f1_lbl: "Глава 1. Огромный вес",
+        sci_f1_desc: "Полностью заправленная ракета весит 5 000 тонн. Это как 11 больших пассажирских самолётов Боинг-747, сложенных вместе. Почти всё это — топливо: ракета на 90% состоит из него. Для сравнения: Saturn V («Сатурн-5»), ракета, которая в 1969 году доставила людей на Луну, весила около 3 000 тонн — почти вдвое меньше.",
         sci_f2_val: "7 500 тонн тяги",
-        sci_f2_lbl: "33 двигателя Raptor",
-        sci_f2_desc: "Ракета весит 5 000 тонн, а двигатели толкают вверх с силой 7 500. Эта разница и есть ускорение: ракета не просто висит, а рвётся вверх. Топливо — метан и жидкий кислород.",
+        sci_f2_lbl: "Глава 2. Сила, которая поднимает",
+        sci_f2_desc: "Тяга — это сила, с которой двигатели толкают ракету вверх. Её измеряют в тоннах силы: тяга 7 500 тонн значит, что двигатели смогли бы удержать на весу груз в 7 500 тонн. Двигателей 33, они называются Raptor («Раптор», хищная птица) и работают на метане и жидком кислороде. А теперь сравните: ракета весит 5 000 тонн, а толкают её вверх с силой 7 500. Тяга больше веса на 2 500 тонн — именно этот излишек и разгоняет ракету. Будь тяга меньше веса, ракета просто осталась бы на земле.",
         sci_f3_val: "Hot-Staging",
-        sci_f3_lbl: "Зажигание «на лету»",
-        sci_f3_desc: "Корабль включает свои двигатели ещё до отделения от бустера и буквально отталкивается от него огнём. Ни секунды потерь.",
+        sci_f3_lbl: "Глава 3. Горячее разделение",
+        sci_f3_desc: "Примерно через две с половиной минуты полёта ускоритель отработал своё и должен отцепиться. Обычно двигатели верхней части включают уже после отделения. Здесь иначе: корабль зажигает свои двигатели ещё пока они скреплены и огнём отталкивается от ускорителя. Это и называют «горячим разделением» (hot-staging). Выигрыш в том, что ни секунды не теряется без тяги, и ракета продолжает разгоняться.",
         sci_f4_val: "28 000 км/ч",
-        sci_f4_lbl: "Скорость, чтобы не упасть",
-        sci_f4_desc: "Чтобы остаться на орбите, нужно лететь так быстро, что Земля уходит из-под корабля быстрее, чем он падает. Он падает вечно — и вечно промахивается мимо планеты.",
-        sci_body_launch: "💡 <strong>Как мы здесь оказались:</strong> подъём на 320 км — это не про высоту, а про скорость. Высоту набрать легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в бустере и 1 100 в самом корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Вы начинаете игру с пустым баком.",
+        sci_f4_lbl: "Глава 4. Скорость, чтобы не упасть",
+        sci_f4_desc: "Чтобы оказаться на орбите, мало подняться вверх на 320 километров. Нужно разогнаться до 7,8 километра в секунду — это и есть 28 000 км/ч. Почему так? Любое тело падает на Землю. Но если лететь вбок достаточно быстро, Земля, круглая как шар, уходит из-под корабля так же быстро, как он падает. Корабль всё время падает — и всё время промахивается мимо планеты. Это и есть орбита, а такая скорость называется первой космической.",
+        sci_body_launch: "💡 <strong>Как мы здесь оказались:</strong> подъём на орбиту — это не про высоту, а про скорость. Подняться на 320 км легко, трудно разогнаться до 7,8 км/с. Для этого ракета сожгла около 4 500 тонн топлива: 3 400 в ускорителе и 1 100 в корабле. Корабль на орбите, но баки почти пусты: осталось 96 тонн из 1 200. Именно с этого начинается ваша миссия.",
+        sci_intro_launch: "🎓 <strong>Добро пожаловать на экскурсию!</strong> Представьте: нужно поднять в небо многоэтажный дом и разогнать его до 28 000 километров в час. Именно так быстро надо лететь, чтобы остаться на орбите — то есть кружить вокруг Земли и не падать. Это делает самая большая ракета в истории. Она состоит из двух частей. Нижняя — ускоритель Super Heavy («Супер Хеви», по-русски «Сверхтяжёлый»): он даёт основной разгон. Верхняя — космический корабль Starship («Старшип», «Звёздный корабль»): в нём летит экипаж, и именно он дойдёт до Марса. Вместе их называют системой Starship. Давайте разберём её по главам.",
         sci_formula_desc: "Формула Циолковского (1903): чтобы лететь быстрее, топлива нужно не чуть больше, а в разы",
         sci_t1_val: "92%",
         sci_t1_lbl: "Топлива сгорело ради орбиты",
@@ -1404,18 +1411,19 @@ __ORBIT_SRC__
         sci_tab3: "❄️ 3. ZERO-G & CRYOGENICS",
         sci_tab4: "🛠️ 4. XXI CENTURY REALITY",
         sci_f1_val: "5,000 tons",
-        sci_f1_lbl: "Liftoff weight: 11 loaded Boeing 747s",
-        sci_f1_desc: "Super Heavy + Starship is the biggest rocket ever built. Twice the thrust of the Moon-landing Saturn V.",
+        sci_f1_lbl: "Chapter 1. Enormous weight",
+        sci_f1_desc: "A fully fueled rocket weighs 5,000 tons. That is like 11 big Boeing 747 airliners put together. Almost all of it is fuel: the rocket is about 90% propellant. For comparison, the Saturn V that took people to the Moon in 1969 weighed about 3,000 tons — nearly half as much.",
         sci_f2_val: "7,500 tons of thrust",
-        sci_f2_lbl: "33 Raptor engines",
-        sci_f2_desc: "The rocket weighs 5,000 tons, the engines push up with 7,500. That difference is acceleration: it does not just hover, it surges upward. Fuel: methane and liquid oxygen.",
+        sci_f2_lbl: "Chapter 2. The force that lifts",
+        sci_f2_desc: "Thrust is the force with which engines push a rocket upward. It is measured in tons of force: 7,500 tons of thrust means the engines could hold up a load of 7,500 tons. There are 33 engines called Raptor, burning methane and liquid oxygen. Now compare: the rocket weighs 5,000 tons, but is pushed up with 7,500. The thrust exceeds the weight by 2,500 tons — that surplus is what accelerates the rocket. If thrust were less than weight, the rocket would simply stay on the ground.",
         sci_f3_val: "Hot-Staging",
-        sci_f3_lbl: "Ignition mid-flight",
-        sci_f3_desc: "The ship lights its engines before it separates from the booster and literally pushes itself away with fire. Not a second wasted.",
+        sci_f3_lbl: "Chapter 3. Hot separation",
+        sci_f3_desc: "About two and a half minutes into the flight the booster has done its job and must detach. Usually the upper stage lights its engines after separation. Here it is different: the ship ignites its engines while still attached and pushes itself away from the booster with fire. This is called hot staging. The gain is that not a second is lost without thrust, and the rocket keeps accelerating.",
         sci_f4_val: "28,000 km/h",
-        sci_f4_lbl: "The speed that keeps you from falling",
-        sci_f4_desc: "To stay in orbit you must fly so fast that the Earth curves away faster than you fall. You fall forever — and forever miss the planet.",
-        sci_body_launch: "💡 <strong>How we got here:</strong> climbing to 320 km is not about height, it is about speed. Height is easy; reaching 7.8 km/s is hard. The rocket burned about 4,500 tons of propellant: 3,400 in the booster and 1,100 in the ship itself. The ship is in orbit, but its tanks are almost empty: 96 tons left out of 1,200. You start the game with an empty tank.",
+        sci_f4_lbl: "Chapter 4. The speed that keeps you from falling",
+        sci_f4_desc: "To reach orbit it is not enough to climb 320 kilometers. You must accelerate to 7.8 kilometers per second — that is exactly 28,000 km/h. Why? Everything falls toward the Earth. But if you fly sideways fast enough, the round Earth curves away beneath you as fast as you fall. The ship is always falling — and always missing the planet. That is an orbit, and this speed is called the first cosmic velocity.",
+        sci_body_launch: "💡 <strong>How we got here:</strong> reaching orbit is not about height, it is about speed. Climbing 320 km is easy; reaching 7.8 km/s is hard. The rocket burned about 4,500 tons of propellant: 3,400 in the booster and 1,100 in the ship. The ship is in orbit, but its tanks are almost empty: 96 tons left out of 1,200. This is where your mission begins.",
+        sci_intro_launch: "🎓 <strong>Welcome to the tour!</strong> Imagine lifting a multi-storey building into the sky and accelerating it to 28,000 kilometers per hour. That is how fast you must fly to stay in orbit — to circle the Earth without falling. The biggest rocket in history does exactly that. It has two parts. The lower one is the Super Heavy booster: it provides the main push. The upper one is the Starship spacecraft: the crew rides in it, and it is the one that will reach Mars. Together they are called the Starship system. Let us go through it chapter by chapter.",
         sci_formula_desc: "Tsiolkovsky's rocket equation (1903): to go faster you need not a bit more fuel, but many times more",
         sci_t1_val: "92%",
         sci_t1_lbl: "Of the fuel burned just to reach orbit",
@@ -1564,6 +1572,7 @@ __ORBIT_SRC__
       document.getElementById('i18n-sci-f4-lbl').innerText = d.sci_f4_lbl;
       document.getElementById('i18n-sci-f4-desc').innerText = d.sci_f4_desc;
       document.getElementById('i18n-sci-body-launch').innerHTML = d.sci_body_launch;
+      document.getElementById('i18n-sci-intro-launch').innerHTML = d.sci_intro_launch;
 
       // Tab 2
       document.getElementById('i18n-sci-formula-desc').innerText = d.sci_formula_desc;
