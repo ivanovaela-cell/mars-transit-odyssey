@@ -8,6 +8,9 @@ sys.path.append(r'D:\mars-transit-odyssey')
 from textures_b64 import EARTH_B64, CLOUDS_B64, SPEC_B64, MARS_B64, SUN_B64, MOON_B64
 from crew_b64 import VANCE_B64, ROMANOVA_B64, CHEN_B64, REID_B64
 from audio_b64 import MAIN_THEME_B64
+import base64 as _b64
+with open(r'D:\mars-transit-odyssey\assets\intro_720p.mp4', 'rb') as _vf:
+    INTRO_VIDEO_B64 = 'data:video/mp4;base64,' + _b64.b64encode(_vf.read()).decode('ascii')
 
 with open(r'D:\mars-transit-odyssey\libs\three.min.js', 'r', encoding='utf-8') as f:
     three_src = f.read()
@@ -742,9 +745,28 @@ HTML_CONTENT = r'''<!DOCTYPE html>
     .toast-msg.show {
       opacity: 1;
     }
+    /* ===== INTRO CINEMATIC ===== */
+    #cinematic { position: fixed; inset: 0; z-index: 99999; background: #000; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s; }
+    #cinematic.hidden { opacity: 0; pointer-events: none; }
+    #cinematic video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+    #cine-start { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: radial-gradient(circle at center, #0a1a2e 0%, #000 75%); cursor: pointer; }
+    #cine-start .cine-title { font-size: 34px; font-weight: 800; letter-spacing: 3px; color: #00f0ff; text-align: center; }
+    #cine-start .cine-play { font-size: 20px; padding: 14px 34px; border: 2px solid #00f0ff; border-radius: 40px; color: #fff; background: rgba(0,240,255,0.1); }
+    #cine-skip { position: absolute; right: 24px; bottom: 24px; z-index: 2; padding: 10px 22px; background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.5); border-radius: 24px; cursor: pointer; font-size: 15px; display: none; }
+    #cine-skip:hover { background: rgba(0,240,255,0.25); }
   </style>
 </head>
 <body>
+
+  <!-- INTRO CINEMATIC -->
+  <div id="cinematic">
+    <video id="cine-video" playsinline src="__INTRO_VIDEO_B64__"></video>
+    <div id="cine-start" onclick="playCinematic()">
+      <div class="cine-title">АРЕС-1: МАРСИАНСКИЙ ТРАНЗИТ</div>
+      <div class="cine-play" id="cine-play-label">▶ СМОТРЕТЬ ЗАСТАВКУ (со звуком)</div>
+    </div>
+    <button id="cine-skip" onclick="endCinematic()">ПРОПУСТИТЬ ⏭</button>
+  </div>
 
   <!-- Top Bar -->
   <div class="top-bar glass-card">
@@ -1686,11 +1708,31 @@ __ORBIT_SRC__
     }
 
     window.addEventListener('click', function onFirstClick() {
+      if (document.getElementById('cinematic') && !document.getElementById('cinematic').classList.contains('hidden')) return;
       if (!musicStarted && audioEnabled) {
         startBackgroundMusic();
       }
       window.removeEventListener('click', onFirstClick);
     });
+
+    /* ===== INTRO CINEMATIC ===== */
+    function playCinematic() {
+      const v = document.getElementById('cine-video');
+      document.getElementById('cine-start').style.display = 'none';
+      document.getElementById('cine-skip').style.display = 'block';
+      document.getElementById('cine-skip').innerText = currentLang === 'en' ? 'SKIP ⏭' : 'ПРОПУСТИТЬ ⏭';
+      v.onended = endCinematic;
+      v.play().catch(() => endCinematic());
+    }
+    function endCinematic() {
+      const c = document.getElementById('cinematic');
+      const v = document.getElementById('cine-video');
+      if (c.classList.contains('hidden')) return;
+      v.pause();
+      c.classList.add('hidden');
+      setTimeout(() => { c.style.display = 'none'; v.removeAttribute('src'); v.load(); }, 900);
+      startBackgroundMusic();
+    }
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -2104,6 +2146,7 @@ final_html = final_html.replace('__ROMANOVA_B64__', ROMANOVA_B64)
 final_html = final_html.replace('__CHEN_B64__', CHEN_B64)
 final_html = final_html.replace('__REID_B64__', REID_B64)
 final_html = final_html.replace('__MAIN_THEME_B64__', MAIN_THEME_B64)
+final_html = final_html.replace('__INTRO_VIDEO_B64__', INTRO_VIDEO_B64)
 
 with open(r'D:\mars-transit-odyssey\index.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
